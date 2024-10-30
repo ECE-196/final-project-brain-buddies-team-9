@@ -2230,16 +2230,6 @@
 	)
 	(wire
 		(pts
-			(xy 43.18 99.06) (xy 43.18 102.87)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0cb27f23-9a36-409a-a50b-88e9116a13e1")
-	)
-	(wire
-		(pts
 			(xy 124.46 105.41) (xy 133.35 105.41)
 		)
 		(stroke
@@ -2427,6 +2417,16 @@
 			(type default)
 		)
 		(uuid "67e65cf9-336d-4b57-8067-e53aa974409e")
+	)
+	(wire
+		(pts
+			(xy 43.18 99.06) (xy 43.18 116.84)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6e499b79-cc1d-40d7-9321-f432d5346760")
 	)
 	(wire
 		(pts
@@ -3011,17 +3011,6 @@
 		(uuid "6c9743ba-4676-4729-a519-c4ee498634ae")
 	)
 	(label "+"
-		(at 43.18 100.33 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "6d2c9025-bfaf-41af-988d-a7a5e3b489d8")
-	)
-	(label "+"
 		(at 43.18 85.09 0)
 		(fields_autoplaced yes)
 		(effects
@@ -3436,6 +3425,76 @@
 		)
 	)
 	(symbol
+		(lib_id "Switch:SW_Push")
+		(at 43.18 93.98 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "34f587ec-4eae-4165-aef0-8638082d3295")
+		(property "Reference" "OnOff"
+			(at 44.45 92.7099 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "SW_Push"
+			(at 44.45 95.2499 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Button_Switch_SMD:SW_Push_SPST_NO_Alps_SKRK"
+			(at 38.1 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 38.1 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Push button switch, generic, two pins"
+			(at 43.18 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "ea997f83-8c71-4d13-876f-41e50c513019")
+		)
+		(pin "1"
+			(uuid "966a7972-0ef3-4927-9686-ac99c53aeba9")
+		)
+		(instances
+			(project ""
+				(path "/539b41c1-4420-4cfd-92b7-a29c74941d81"
+					(reference "OnOff")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:R")
 		(at 198.12 38.1 0)
 		(unit 1)
@@ -3463,7 +3522,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0201_0603Metric"
 			(at 196.342 38.1 90)
 			(effects
 				(font
@@ -4146,7 +4205,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0201_0603Metric"
 			(at 186.182 38.1 90)
 			(effects
 				(font
@@ -4183,76 +4242,6 @@
 			(project ""
 				(path "/539b41c1-4420-4cfd-92b7-a29c74941d81"
 					(reference "R1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Switch:SW_Push")
-		(at 43.18 93.98 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "df282ecb-c501-4359-a0a8-cdd18eeabe89")
-		(property "Reference" "Down1"
-			(at 44.45 92.7099 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "SW_Push"
-			(at 44.45 95.2499 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "Button_Switch_SMD:SW_SPST_PTS810"
-			(at 38.1 93.98 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 38.1 93.98 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Push button switch, generic, two pins"
-			(at 43.18 93.98 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "1f1e5fbb-bcf4-4b3e-8c35-628d0c28e828")
-		)
-		(pin "2"
-			(uuid "862da97e-1f3b-4b1a-a5f3-e60a36217c8c")
-		)
-		(instances
-			(project "Final_Project_PCB"
-				(path "/539b41c1-4420-4cfd-92b7-a29c74941d81"
-					(reference "Down1")
 					(unit 1)
 				)
 			)
