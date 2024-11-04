@@ -4369,7 +4369,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "d5f067f5-b887-4f8c-85c4-ab8b24f3f11c")
-		(property "Reference" "OnOff"
+		(property "Reference" "OnOff1"
 			(at 48.26 92.7099 90)
 			(effects
 				(font
@@ -4426,7 +4426,7 @@
 		(instances
 			(project ""
 				(path "/539b41c1-4420-4cfd-92b7-a29c74941d81"
-					(reference "OnOff")
+					(reference "OnOff1")
 					(unit 1)
 				)
 			)
