@@ -84,7 +84,7 @@
 			(subtractmaskfromsilk no)
 			(outputformat 1)
 			(mirror no)
-			(drillshape 1)
+			(drillshape 0)
 			(scaleselection 1)
 			(outputdirectory "")
 		)
@@ -2571,7 +2571,7 @@
 		(property "Reference" "MNT3"
 			(at 0 -5.75 0)
 			(layer "F.SilkS")
-			(uuid "48ac86c7-5c3a-4aa5-8e8d-86d31ced40e9")
+			(uuid "279476e8-6210-4c64-af1a-b88609b36297")
 			(effects
 				(font
 					(size 1 1)
@@ -2582,7 +2582,7 @@
 		(property "Value" "MountingHole_5.3mm_M5_ISO7380_Pad_TopBottom"
 			(at 0 5.75 0)
 			(layer "F.Fab")
-			(uuid "34d69f45-8a19-4928-a3ca-bbc3865ceb6e")
+			(uuid "fcb85dd4-58c3-4c24-be3c-bf02843a38b4")
 			(effects
 				(font
 					(size 1 1)
@@ -2639,7 +2639,7 @@
 			)
 			(fill none)
 			(layer "Cmts.User")
-			(uuid "2e713b2c-67c8-47f2-96fb-7decadde5909")
+			(uuid "5bbdb70f-e7da-4748-9d68-a0d1ae805b3e")
 		)
 		(fp_circle
 			(center 0 0)
@@ -2650,12 +2650,12 @@
 			)
 			(fill none)
 			(layer "F.CrtYd")
-			(uuid "1de018e2-0998-4d70-830a-319a86aca4a0")
+			(uuid "d462dbe3-e5cc-43c8-b32e-a6ff46b3bb92")
 		)
 		(fp_text user "${REFERENCE}"
 			(at 0 0 0)
 			(layer "F.Fab")
-			(uuid "4bea39f3-61b1-4e92-b7de-ccc82b50bcc6")
+			(uuid "bf6a55f6-5fd1-4689-b506-e28efd83c914")
 			(effects
 				(font
 					(size 1 1)
@@ -2669,19 +2669,19 @@
 			(drill 5.3)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(uuid "cb87d76d-6853-4384-ac75-da16e500bfa1")
+			(uuid "02c741a9-127c-4223-a2a0-e590e19a195c")
 		)
 		(pad "1" connect circle
 			(at 0 0)
 			(size 9.5 9.5)
 			(layers "F.Cu" "F.Mask")
-			(uuid "cc408a0e-8ce5-4414-b9d7-be1c7c815622")
+			(uuid "9787e512-a7dd-48c7-8e7d-e776c15e4b9e")
 		)
 		(pad "1" connect circle
 			(at 0 0)
 			(size 9.5 9.5)
 			(layers "B.Cu" "B.Mask")
-			(uuid "00210eba-35b5-46b5-aa81-8aa96ec539f8")
+			(uuid "41303bc1-67c2-4a57-bb3f-de68dd3bbc9e")
 		)
 	)
 	(footprint "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
@@ -7443,7 +7443,7 @@
 		(property "Reference" "MNT1"
 			(at 0 -5.75 0)
 			(layer "F.SilkS")
-			(uuid "48ac86c7-5c3a-4aa5-8e8d-86d31ced40e9")
+			(uuid "aaa2e149-c0a6-49a7-b420-9e7311c5ded9")
 			(effects
 				(font
 					(size 1 1)
@@ -7454,7 +7454,7 @@
 		(property "Value" "MountingHole_5.3mm_M5_ISO7380_Pad_TopBottom"
 			(at 0 5.75 0)
 			(layer "F.Fab")
-			(uuid "34d69f45-8a19-4928-a3ca-bbc3865ceb6e")
+			(uuid "822d578b-bb4b-4535-aaba-7344b6d389d7")
 			(effects
 				(font
 					(size 1 1)
@@ -7511,7 +7511,7 @@
 			)
 			(fill none)
 			(layer "Cmts.User")
-			(uuid "2e713b2c-67c8-47f2-96fb-7decadde5909")
+			(uuid "a1c8ef7d-ffdc-41eb-9846-b7225998382f")
 		)
 		(fp_circle
 			(center 0 0)
@@ -7522,12 +7522,12 @@
 			)
 			(fill none)
 			(layer "F.CrtYd")
-			(uuid "1de018e2-0998-4d70-830a-319a86aca4a0")
+			(uuid "b8c37dc8-2754-47bf-be06-628d2d66e0ad")
 		)
 		(fp_text user "${REFERENCE}"
 			(at 0 0 0)
 			(layer "F.Fab")
-			(uuid "4bea39f3-61b1-4e92-b7de-ccc82b50bcc6")
+			(uuid "acc9908b-bc4f-4eb5-9deb-de8962138834")
 			(effects
 				(font
 					(size 1 1)
@@ -7541,19 +7541,19 @@
 			(drill 5.3)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(uuid "cb87d76d-6853-4384-ac75-da16e500bfa1")
+			(uuid "924b4a76-32e9-4950-ae0a-cf2600d43710")
 		)
 		(pad "1" connect circle
 			(at 0 0)
 			(size 9.5 9.5)
 			(layers "F.Cu" "F.Mask")
-			(uuid "cc408a0e-8ce5-4414-b9d7-be1c7c815622")
+			(uuid "7a7a811f-55f9-44d8-8af7-70e50500b406")
 		)
 		(pad "1" connect circle
 			(at 0 0)
 			(size 9.5 9.5)
 			(layers "B.Cu" "B.Mask")
-			(uuid "00210eba-35b5-46b5-aa81-8aa96ec539f8")
+			(uuid "34cf0d03-a35c-4f28-bdd7-e97e7e66a4d9")
 		)
 	)
 	(footprint "Connector_PinHeader_2.54mm:PinHeader_1x20_P2.54mm_Vertical"
@@ -10882,16 +10882,25 @@
 			)
 		)
 	)
-	(gr_rect
-		(start 155.5 118.3)
-		(end 205.5 158.3)
+	(gr_line
+		(start 206 118.7)
+		(end 156 118.7)
 		(stroke
 			(width 0.15)
 			(type default)
 		)
-		(fill none)
 		(layer "B.SilkS")
-		(uuid "0394a9de-126f-4c2d-8d03-3150ae3c8180")
+		(uuid "491b62b5-3a30-4824-a17b-004abdec6c8e")
+	)
+	(gr_line
+		(start 156 118.7)
+		(end 156 153.3)
+		(stroke
+			(width 0.15)
+			(type default)
+		)
+		(layer "B.SilkS")
+		(uuid "63d50dec-0511-4419-a147-9f0ddec148e5")
 	)
 	(gr_rect
 		(start 110.4458 60.0455)
@@ -11024,7 +11033,7 @@
 		)
 	)
 	(gr_text "1500 mAh 804048 Battery"
-		(at 184.8 119.9 0)
+		(at 185.3 120.3 0)
 		(layer "B.SilkS")
 		(uuid "a7fd260b-14ed-436b-95eb-abb3acc356cd")
 		(effects
@@ -15532,10 +15541,10 @@
 				(xy 126.979399 62.783995) (xy 127.043806 62.829093) (xy 127.172965 62.919532) (xy 127.172967 62.919533)
 				(xy 127.17297 62.919535) (xy 127.387137 63.019403) (xy 127.615392 63.080563) (xy 127.803718 63.097039)
 				(xy 127.850799 63.101159) (xy 127.8508 63.101159) (xy 127.850801 63.101159) (xy 127.886084 63.098071)
-				(xy 128.063813 63.082522) (xy 128.132312 63.096288) (xy 128.162301 63.118369) (xy 139.822349 74.778416)
-				(xy 139.876147 74.832214) (xy 139.926885 74.882952) (xy 140.049798 74.96508) (xy 140.049811 74.965087)
-				(xy 140.186382 75.021656) (xy 140.186387 75.021658) (xy 140.186391 75.021658) (xy 140.186392 75.021659)
-				(xy 140.331379 75.0505) (xy 140.331382 75.0505) (xy 144.560663 75.0505) (xy 144.627702 75.070185)
+				(xy 128.063813 63.082522) (xy 128.132312 63.096288) (xy 128.162301 63.118369) (xy 139.92688 74.882948)
+				(xy 139.926884 74.882951) (xy 140.049798 74.96508) (xy 140.049811 74.965087) (xy 140.186382 75.021656)
+				(xy 140.186387 75.021658) (xy 140.186391 75.021658) (xy 140.186392 75.021659) (xy 140.331379 75.0505)
+				(xy 140.331382 75.0505) (xy 140.479217 75.0505) (xy 144.560663 75.0505) (xy 144.627702 75.070185)
 				(xy 144.633548 75.074182) (xy 144.647265 75.084148) (xy 144.64727 75.084151) (xy 144.820192 75.161142)
 				(xy 144.820197 75.161144) (xy 145.005354 75.2005) (xy 145.005355 75.2005) (xy 145.194644 75.2005)
 				(xy 145.194646 75.2005) (xy 145.379803 75.161144) (xy 145.55273 75.084151) (xy 145.705871 74.972888)
@@ -16329,9 +16338,5 @@
 	(group ""
 		(uuid "0e4f6b92-a7b7-4489-9861-3cc2a4d6eb84")
 		(members "4f73e1c0-9c91-4a28-b7fa-38be8242917e" "db357e19-2365-4e0c-a340-6fb1a5558ca8")
-	)
-	(group ""
-		(uuid "11393135-2af1-41a4-bc2b-776436cfa7e9")
-		(members "0394a9de-126f-4c2d-8d03-3150ae3c8180" "a7fd260b-14ed-436b-95eb-abb3acc356cd")
 	)
 )
