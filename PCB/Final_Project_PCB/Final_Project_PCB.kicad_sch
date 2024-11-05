@@ -3364,6 +3364,16 @@
 	)
 	(wire
 		(pts
+			(xy 157.48 76.2) (xy 157.48 82.55)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "116026d0-16f5-49a5-a053-47061e2653ed")
+	)
+	(wire
+		(pts
 			(xy 180.34 76.2) (xy 180.34 82.55)
 		)
 		(stroke
@@ -3371,16 +3381,6 @@
 			(type default)
 		)
 		(uuid "121941b7-d0fa-407f-8f24-46b9c46b4541")
-	)
-	(wire
-		(pts
-			(xy 157.48 76.2) (xy 157.48 82.55)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "129afbee-e68b-4fde-88f1-0463629d9062")
 	)
 	(wire
 		(pts
@@ -3461,6 +3461,16 @@
 			(type default)
 		)
 		(uuid "1d60bd18-4bbd-4200-83dc-8fc878c636a2")
+	)
+	(wire
+		(pts
+			(xy 170.18 76.2) (xy 170.18 82.55)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1e1e9f19-0be5-4edd-8989-890e4c56dcc3")
 	)
 	(wire
 		(pts
@@ -3674,16 +3684,6 @@
 	)
 	(wire
 		(pts
-			(xy 160.02 76.2) (xy 160.02 82.55)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3a36903f-81e4-4daa-b665-87059fc8fe68")
-	)
-	(wire
-		(pts
 			(xy 41.91 111.76) (xy 59.69 111.76)
 		)
 		(stroke
@@ -3784,16 +3784,6 @@
 	)
 	(wire
 		(pts
-			(xy 170.18 76.2) (xy 170.18 82.55)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4dbe0ce8-d661-4948-b014-10027aa70dbc")
-	)
-	(wire
-		(pts
 			(xy 97.79 134.62) (xy 123.19 134.62)
 		)
 		(stroke
@@ -3844,7 +3834,7 @@
 	)
 	(wire
 		(pts
-			(xy 222.25 54.61) (xy 229.87 54.61)
+			(xy 227.33 54.61) (xy 234.95 54.61)
 		)
 		(stroke
 			(width 0)
@@ -3861,16 +3851,6 @@
 			(type default)
 		)
 		(uuid "583f4416-abde-4e31-9c60-7c68c9eca621")
-	)
-	(wire
-		(pts
-			(xy 162.56 76.2) (xy 162.56 82.55)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5ce5752b-a16d-4f24-af44-a2ee609ce912")
 	)
 	(wire
 		(pts
@@ -3891,6 +3871,16 @@
 			(type default)
 		)
 		(uuid "622fb12f-7957-41c9-bf47-6a41f9f92e79")
+	)
+	(wire
+		(pts
+			(xy 162.56 76.2) (xy 162.56 82.55)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "63c231e6-d60f-4962-bb16-933c4964b309")
 	)
 	(wire
 		(pts
@@ -3964,6 +3954,16 @@
 	)
 	(wire
 		(pts
+			(xy 160.02 76.2) (xy 160.02 82.55)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6e9088e3-3c0f-41b3-81d1-562b88593649")
+	)
+	(wire
+		(pts
 			(xy 214.63 148.59) (xy 224.79 148.59)
 		)
 		(stroke
@@ -3974,7 +3974,7 @@
 	)
 	(wire
 		(pts
-			(xy 223.52 29.21) (xy 232.41 29.21)
+			(xy 228.6 29.21) (xy 237.49 29.21)
 		)
 		(stroke
 			(width 0)
@@ -4044,7 +4044,7 @@
 	)
 	(wire
 		(pts
-			(xy 243.84 54.61) (xy 243.84 58.42)
+			(xy 248.92 54.61) (xy 248.92 58.42)
 		)
 		(stroke
 			(width 0)
@@ -4054,7 +4054,7 @@
 	)
 	(wire
 		(pts
-			(xy 242.57 29.21) (xy 243.84 29.21)
+			(xy 247.65 29.21) (xy 248.92 29.21)
 		)
 		(stroke
 			(width 0)
@@ -4394,7 +4394,7 @@
 	)
 	(wire
 		(pts
-			(xy 243.84 29.21) (xy 243.84 33.02)
+			(xy 248.92 29.21) (xy 248.92 33.02)
 		)
 		(stroke
 			(width 0)
@@ -4624,7 +4624,7 @@
 	)
 	(wire
 		(pts
-			(xy 240.03 54.61) (xy 243.84 54.61)
+			(xy 245.11 54.61) (xy 248.92 54.61)
 		)
 		(stroke
 			(width 0)
@@ -4841,7 +4841,7 @@
 		(uuid "f6679a2c-4124-4e2e-8d1b-d6dc4b095849")
 	)
 	(label "IO37"
-		(at 170.18 81.28 90)
+		(at 170.18 76.2 90)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4884,6 +4884,17 @@
 		)
 		(uuid "06d5c573-6b5d-464b-b853-79b61222bbd0")
 	)
+	(label "IO47"
+		(at 167.64 76.2 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "085b715d-341b-4f73-bead-95dd83f8b903")
+	)
 	(label "D-Pad_Left"
 		(at 160.02 132.08 180)
 		(fields_autoplaced yes)
@@ -4918,7 +4929,7 @@
 		(uuid "0ad1f902-ef8a-451a-a407-c0ca43e21b57")
 	)
 	(label "GND"
-		(at 160.02 81.28 90)
+		(at 160.02 76.2 90)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4949,6 +4960,17 @@
 			(justify right bottom)
 		)
 		(uuid "11c46821-8153-480e-a30f-38310df55e32")
+	)
+	(label "IO33"
+		(at 165.1 76.2 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "136d1bd1-76d0-4545-a3e7-552ebb342dc7")
 	)
 	(label "SD4"
 		(at 105.41 124.46 0)
@@ -4984,7 +5006,7 @@
 		(uuid "221dacdd-0763-4b54-a961-bc4d735d0a53")
 	)
 	(label "Bottom_Button"
-		(at 222.25 54.61 180)
+		(at 227.33 54.61 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4993,6 +5015,17 @@
 			(justify right bottom)
 		)
 		(uuid "2658dbf7-46d0-423c-a526-3e8cd0e75976")
+	)
+	(label "IO46"
+		(at 190.5 76.2 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "26b23ea2-54cb-4fc5-8f1d-38d43b55ab7e")
 	)
 	(label "Vin(3.3)"
 		(at 64.77 52.07 0)
@@ -5006,7 +5039,7 @@
 		(uuid "29d58b2a-caa8-4cf9-a5cc-36c40e9303d6")
 	)
 	(label "Top_Button"
-		(at 223.52 29.21 180)
+		(at 228.6 29.21 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5083,7 +5116,7 @@
 		(uuid "426c71d6-ca9a-4826-a66d-e8f0fbd04972")
 	)
 	(label "IO36"
-		(at 172.72 81.28 90)
+		(at 172.72 76.2 90)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5103,6 +5136,17 @@
 			(justify left bottom)
 		)
 		(uuid "44a92095-c59c-4d24-91c1-7f893d55d5ae")
+	)
+	(label "IO43"
+		(at 182.88 76.2 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "44c02bcf-3716-429a-bf43-36c7ff9717ac")
 	)
 	(label "Up"
 		(at 198.12 109.22 0)
@@ -5214,6 +5258,17 @@
 		)
 		(uuid "59948cdf-1fcb-4c97-b885-5750bf196213")
 	)
+	(label "IO42"
+		(at 180.34 76.2 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "5de44deb-ec3a-42f1-a27d-77e430716b5e")
+	)
 	(label "IO35"
 		(at 46.99 121.92 0)
 		(fields_autoplaced yes)
@@ -5259,7 +5314,7 @@
 		(uuid "6606c398-19db-4a13-aee4-726ca04b8c53")
 	)
 	(label "Vin(3.3)"
-		(at 157.48 81.28 90)
+		(at 157.48 76.2 90)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5303,18 +5358,18 @@
 		(uuid "70955abb-341b-49be-a376-9fc5ef014229")
 	)
 	(label "Vin(5)"
-		(at 50.8 139.7 180)
+		(at 46.99 139.7 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify left bottom)
 		)
 		(uuid "71aa2feb-9b1f-486c-840f-3a86c6fbc420")
 	)
 	(label "Vin(3.3)"
-		(at 243.84 58.42 180)
+		(at 248.92 58.42 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5347,7 +5402,7 @@
 		(uuid "8f3fbb3b-5adc-467b-baa8-42ab215c2c34")
 	)
 	(label "IO35"
-		(at 177.8 81.28 90)
+		(at 177.8 76.2 90)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5522,6 +5577,17 @@
 		)
 		(uuid "bea0d49e-c555-4bac-80ce-653f8024bf5f")
 	)
+	(label "IO41"
+		(at 175.26 76.2 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "bf873645-8a46-4e7a-844f-8365ef2efd73")
+	)
 	(label "Select_Button"
 		(at 254 41.91 180)
 		(fields_autoplaced yes)
@@ -5534,7 +5600,7 @@
 		(uuid "c0636a0b-6a3f-4a34-a78b-14c8cae771d0")
 	)
 	(label "IO34"
-		(at 162.56 81.28 90)
+		(at 162.56 76.2 90)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5565,6 +5631,17 @@
 			(justify left bottom)
 		)
 		(uuid "c8e6ba83-45cf-4112-9975-f275627c0a30")
+	)
+	(label "IO44"
+		(at 185.42 76.2 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "cd5fd801-2431-44e7-944a-bbe58df9cfff")
 	)
 	(label "IO45"
 		(at 46.99 96.52 0)
@@ -5609,6 +5686,17 @@
 			(justify right bottom)
 		)
 		(uuid "d6300d18-a144-4f5a-97a5-0176c08d2d2d")
+	)
+	(label "IO45"
+		(at 187.96 76.2 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "d77cfb33-895b-4343-b365-a465490ff171")
 	)
 	(label "Vin(3.3)"
 		(at 240.03 85.09 180)
@@ -5699,7 +5787,7 @@
 		(uuid "edcb8a10-4370-408f-bec4-5e8f2b0a523a")
 	)
 	(label "Vin(3.3)"
-		(at 243.84 33.02 180)
+		(at 248.92 33.02 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -6195,7 +6283,7 @@
 	)
 	(symbol
 		(lib_id "Switch:SW_Push")
-		(at 234.95 54.61 0)
+		(at 240.03 54.61 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6204,7 +6292,7 @@
 		(fields_autoplaced yes)
 		(uuid "24413c08-3471-4a3e-8633-8791120c458a")
 		(property "Reference" "Bottom_button1"
-			(at 234.95 46.99 0)
+			(at 240.03 46.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6212,7 +6300,7 @@
 			)
 		)
 		(property "Value" "SW_Push"
-			(at 234.95 49.53 0)
+			(at 240.03 49.53 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6220,7 +6308,7 @@
 			)
 		)
 		(property "Footprint" "Button_Switch_SMD:SW_SPST_PTS810"
-			(at 234.95 49.53 0)
+			(at 240.03 49.53 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6229,7 +6317,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 234.95 49.53 0)
+			(at 240.03 49.53 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6238,7 +6326,7 @@
 			)
 		)
 		(property "Description" "Push button switch, generic, two pins"
-			(at 234.95 54.61 0)
+			(at 240.03 54.61 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6591,7 +6679,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "31eb0354-d1d3-4c5c-b4c3-39c93ef371eb")
-		(property "Reference" "LCD"
+		(property "Reference" "LCD1"
 			(at 173.99 90.17 90)
 			(effects
 				(font
@@ -6607,7 +6695,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x14_P2.54mm_Vertical"
 			(at 172.72 87.63 0)
 			(effects
 				(font
@@ -6679,7 +6767,7 @@
 		(instances
 			(project ""
 				(path "/539b41c1-4420-4cfd-92b7-a29c74941d81"
-					(reference "LCD")
+					(reference "LCD1")
 					(unit 1)
 				)
 			)
@@ -8161,7 +8249,7 @@
 	)
 	(symbol
 		(lib_id "Switch:SW_Push")
-		(at 237.49 29.21 0)
+		(at 242.57 29.21 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -8170,7 +8258,7 @@
 		(fields_autoplaced yes)
 		(uuid "91c1fe02-2524-49c1-abc9-7e53afa5b510")
 		(property "Reference" "Top_button1"
-			(at 237.49 21.59 0)
+			(at 242.57 21.59 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8178,7 +8266,7 @@
 			)
 		)
 		(property "Value" "SW_Push"
-			(at 237.49 24.13 0)
+			(at 242.57 24.13 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8186,7 +8274,7 @@
 			)
 		)
 		(property "Footprint" "Button_Switch_SMD:SW_SPST_PTS810"
-			(at 237.49 24.13 0)
+			(at 242.57 24.13 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8195,7 +8283,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 237.49 24.13 0)
+			(at 242.57 24.13 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8204,7 +8292,7 @@
 			)
 		)
 		(property "Description" "Push button switch, generic, two pins"
-			(at 237.49 29.21 0)
+			(at 242.57 29.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
