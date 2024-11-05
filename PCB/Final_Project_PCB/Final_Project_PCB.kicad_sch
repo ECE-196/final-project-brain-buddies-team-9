@@ -4189,7 +4189,7 @@
 		)
 		(uuid "3acbddfb-f493-49b3-b3dd-2c51bedf8048")
 	)
-	(label "D-Pad_Right"
+	(label "D-Pad_Up"
 		(at 105.41 132.08 0)
 		(fields_autoplaced yes)
 		(effects
@@ -4211,7 +4211,7 @@
 		)
 		(uuid "415d155c-e627-409c-9d27-bcbc804da2e4")
 	)
-	(label "D-Pad_Up"
+	(label "D-Pad_Left"
 		(at 105.41 134.62 0)
 		(fields_autoplaced yes)
 		(effects
@@ -4222,7 +4222,7 @@
 		)
 		(uuid "426c71d6-ca9a-4826-a66d-e8f0fbd04972")
 	)
-	(label "D-Pad_Left"
+	(label "D-Pad_Down"
 		(at 105.41 129.54 0)
 		(fields_autoplaced yes)
 		(effects
@@ -4530,7 +4530,7 @@
 		)
 		(uuid "a1548c7f-958c-46a9-afdb-a0a2234b742d")
 	)
-	(label "D-Pad_Down"
+	(label "D-Pad_Right"
 		(at 105.41 127 0)
 		(fields_autoplaced yes)
 		(effects
