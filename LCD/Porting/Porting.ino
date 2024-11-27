@@ -87,7 +87,7 @@ struct task{
 }
 
 // set up struct array
-task taskList[10][10]= {
+task taskList[10]= {
       {"8:00am", "Wake up", 0, 0},
       {"9:00am", "Eat", 0, 0},
       {"10:00am", "Go to school", 0, 0},
@@ -97,7 +97,6 @@ task taskList[10][10]= {
       {"6:00pm", "Gym", 0, 0},
       {"7:00pm", "Dinner", 0, 0},
       {"8:00pm", "Shower", 0, 0},
-      {"9:00pm", "HW", 0, 0},
       {"10:00pm", "Sleep", 0, 0},
   };
 
@@ -247,21 +246,21 @@ void loop(){
     leftState = LOW;
   }
 
-
-   //      set up for TOP Button
+  //      set up for TOP Button when in POPUP
   topPinState = digitalRead(interruptTopPin);
   if(HIGH == topState && LOW == topPinState){
     topState = LOW;
   }
 
 
-  //      set up for SELECT Button
+  //      set up for SELECT Button when in HOMEPAGE
   selectPinState = digitalRead(interruptSelectPin);
   if(HIGH == selectState && LOW == selectPinState && current_screen == ui_Home_Page){
     selectFromHome();
     selectState = LOW;
 
-    // if we are on the notification screen, the buttons will do a differnt event; 
+    // if we are on the popUP the buttons will do a differnt event; 
+
     
   }
 
