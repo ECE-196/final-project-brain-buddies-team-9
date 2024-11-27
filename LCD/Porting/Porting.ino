@@ -87,7 +87,7 @@ struct task{
 }
 
 // set up struct array
-task taskList[10]= {
+task taskListTWo[10]= {
       {"8:00am", "Wake up", 0, 0},
       {"9:00am", "Eat", 0, 0},
       {"10:00am", "Go to school", 0, 0},
