@@ -78,6 +78,33 @@ void changeDownState();
 void changeRightState();
 void changeLeftState();
 
+// struct for task
+struct task{
+	char time[10];
+	char name[100];
+	int skippedAmount;
+	int completedAmount;
+}
+
+// set up struct array
+task taskList[10][10]= {
+      {"8:00am", "Wake up", 0, 0},
+      {"9:00am", "Eat", 0, 0},
+      {"10:00am", "Go to school", 0, 0},
+      {"11:00am", "Class", 0, 0},
+      {"3:00pm", "Lunch", 0, 0},
+      {"5:00pm", "Leave school", 0, 0},
+      {"6:00pm", "Gym", 0, 0},
+      {"7:00pm", "Dinner", 0, 0},
+      {"8:00pm", "Shower", 0, 0},
+      {"9:00pm", "HW", 0, 0},
+      {"10:00pm", "Sleep", 0, 0},
+  };
+
+//Declarations for button up
+char taskList[10][10] = {"8am", "9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm"};
+int taskListLength = 10;
+int taskCounter = 9;
 
 //set up pins for buttons 
 //      UP Button
@@ -118,10 +145,6 @@ volatile byte bottomState = LOW;
 // get root widget
 lv_obj_t* root_widget = lv_obj_get_parent(lv_scr_act());
 
-//Declarations for button up
-char taskList[10][10] = {"8am", "9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm"};
-int taskListLength = 10;
-int taskCounter = 9;
 
 void setup(){
     Serial.begin(115200);    
