@@ -93,17 +93,18 @@ struct task{
 
 //set up struct array
 task taskListTwo[10]= {
-      {"8:00am", "Wake up", 0, 0},
-      {"9:00am", "Eat", 0, 0},
-      {"10:00am", "Go to school", 0, 0},
-      {"11:00am", "Class", 0, 0},
-      {"3:00pm", "Lunch", 0, 0},
-      {"5:00pm", "Leave school", 0, 0},
-      {"6:00pm", "Gym", 0, 0},
-      {"7:00pm", "Dinner", 0, 0},
-      {"8:00pm", "Shower", 0, 0},
-      {"10:00pm", "Sleep", 0, 0},
-  };
+  {"8:00am", "Wake up", 0, 0},
+  {"9:00am", "Eat", 0, 0},
+  {"10:00am", "Go to school", 0, 0},
+  {"11:00am", "Class", 0, 0},
+  {"3:00pm", "Lunch", 0, 0},
+  {"5:00pm", "Leave school", 0, 0},
+  {"6:00pm", "Gym", 0, 0},
+  {"7:00pm", "Dinner", 0, 0},
+  {"8:00pm", "Shower", 0, 0},
+  {"10:00pm", "Sleep", 0, 0},
+};
+int taskCounter2 = 0;
 
 //Declarations for button up
 char taskList[10][10] = {"8am", "9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm"};
@@ -398,21 +399,84 @@ void selectFromHome(){
 }
 
 void bottomFromContainer(){
+  updateTasksTextFromHome("BACK");
   lv_event_send(ui_bottomButton, LV_EVENT_CLICKED, NULL);
-  //updateTasksTextFromHome('BACK');
   containerVisible = false;
 }
 
 void selectfromContainer(){
+  updateTasksTextFromHome("DONE");
   lv_event_send(ui_selectButton, LV_EVENT_CLICKED, NULL);
- // updateTasksTextFromHome('DONE');
   containerVisible = false;
- // taskListTWo[taskCounter].completedAmount++;
 }
 
 void topfromContainer(){
+  updateTasksTextFromHome("SKIP");
   lv_event_send(ui_topButton, LV_EVENT_CLICKED, NULL);
-  //updateTasksTextFromHome('SKIP');
   containerVisible = false;
-  //taskListTWo[taskCounter].skippedAmount++;
+}
+
+//    Function to assign tasks when using decision buttons
+
+// void updateTasksTextFromHome(const char* action){
+// 	switch (action){
+// 		case "SKIP":
+//       taskListTwo[taskCounter2].skippedAmount++;
+//       if(taskCounter2 == 10) {
+//         taskCounter = 0;
+//         }
+// 		  lv_label_set_text(ui_nextTasklabel, taskListTwo[taskCounter2 +  2].name);
+// 		  lv_label_set_text(ui_currentTaskLable, taskListTwo[taskCounter2++].name);
+//       taskCounter2++;
+//       break;
+
+//     case "DONE":
+//       taskListTwo[taskCounter2].completedAmount++; 
+//       if (taskCounter == 10) {
+//         taskCounter = 0;
+//      }
+// 		  lv_label_set_text(ui_nextTasklabel, taskListTwo[taskCounter2 +  2].name);
+// 		  lv_label_set_text(ui_currentTaskLable, taskListTwo[taskCounter2++].name);
+//       taskCounter2++; 
+//       break;
+    
+//     case "BACK": 
+//       taskCounter--; 
+//       if (taskCounter < 0) { 
+//         taskCounter = 9;
+//       }
+//       break;
+
+//     default:
+//       return;
+//     }
+//   }
+
+void updateTasksTextFromHome(const char* action) {
+    if (strcmp(action, "SKIP") == 0) {
+        taskListTwo[taskCounter2].skippedAmount++;
+        if (taskCounter2 == 10) { 
+            taskCounter2 = 0; // Reset if end of list
+        }
+        lv_label_set_text(ui_currentTaskLable, taskListTwo[taskCounter2].name);
+        lv_label_set_text(ui_nextTasklabel, taskListTwo[taskCounter2 +  2].name);
+        taskCounter2++; // Move to the next task
+    } 
+    else if (strcmp(action, "DONE") == 0) {
+        taskListTwo[taskCounter2].completedAmount++;
+        if (taskCounter2 >= 10) { 
+            taskCounter2 = 0; // Reset if end of list
+        }
+        lv_label_set_text(ui_currentTaskLable, taskListTwo[taskCounter2].name);
+        lv_label_set_text(ui_nextTasklabel, taskListTwo[taskCounter2 +  2].name);
+        taskCounter2++; // Move to the next task
+    } 
+    else if (strcmp(action, "BACK") == 0) {
+        if (taskCounter2 > 0) {
+            taskCounter2--; // Move to the previous task
+        } else {
+            taskCounter2 = 9; // Wrap around to the last task
+        }
+        lv_label_set_text(ui_currentTaskLable, taskListTwo[taskCounter2].name);
+    }
 }
