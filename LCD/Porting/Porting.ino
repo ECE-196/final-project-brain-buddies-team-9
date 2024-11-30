@@ -77,6 +77,9 @@ void changeUpState();
 void changeDownState();
 void changeRightState();
 void changeLeftState();
+void bottomFromContainer();
+void selectfromContainer();
+void topfromContainer();
 
 // struct for task
 struct task{
@@ -84,21 +87,21 @@ struct task{
 	char name[100];
 	int skippedAmount;
 	int completedAmount;
-}
+};
 
 // set up struct array
-task taskListTWo[10]= {
-      {"8:00am", "Wake up", 0, 0},
-      {"9:00am", "Eat", 0, 0},
-      {"10:00am", "Go to school", 0, 0},
-      {"11:00am", "Class", 0, 0},
-      {"3:00pm", "Lunch", 0, 0},
-      {"5:00pm", "Leave school", 0, 0},
-      {"6:00pm", "Gym", 0, 0},
-      {"7:00pm", "Dinner", 0, 0},
-      {"8:00pm", "Shower", 0, 0},
-      {"10:00pm", "Sleep", 0, 0},
-  };
+// task taskListTWo[10]= {
+//       {"8:00am", "Wake up", 0, 0},
+//       {"9:00am", "Eat", 0, 0},
+//       {"10:00am", "Go to school", 0, 0},
+//       {"11:00am", "Class", 0, 0},
+//       {"3:00pm", "Lunch", 0, 0},
+//       {"5:00pm", "Leave school", 0, 0},
+//       {"6:00pm", "Gym", 0, 0},
+//       {"7:00pm", "Dinner", 0, 0},
+//       {"8:00pm", "Shower", 0, 0},
+//       {"10:00pm", "Sleep", 0, 0},
+//   }};
 
 //Declarations for button up
 char taskList[10][10] = {"8am", "9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm"};
@@ -140,6 +143,7 @@ volatile byte selectState = LOW;
 const byte interruptBottomPin = 3;
 volatile byte bottomPinState = LOW;
 volatile byte bottomState = LOW;
+volatile byte containerVisible = false;
 
 // get root widget
 lv_obj_t* root_widget = lv_obj_get_parent(lv_scr_act());
@@ -169,7 +173,7 @@ void setup(){
     // Interupts for Decision
     attachInterrupt(digitalPinToInterrupt(interruptTopPin), changeTopState , RISING); 
     attachInterrupt(digitalPinToInterrupt(interruptSelectPin), changeSelectState, RISING); 
-    //attachInterrupt(digitalPinToInterrupt(interruptRightPin), changeRightState, RISING); 
+    attachInterrupt(digitalPinToInterrupt(interruptBottomPin), changeBottomState, RISING); 
 
     Serial.println("Initialize panel device");
     ESP_Panel *panel = new ESP_Panel();
@@ -246,22 +250,30 @@ void loop(){
     leftState = LOW;
   }
 
-  //      set up for TOP Button when in POPUP
-  topPinState = digitalRead(interruptTopPin);
-  if(HIGH == topState && LOW == topPinState){
-    topState = LOW;
-  }
-
 
   //      set up for SELECT Button when in HOMEPAGE
   selectPinState = digitalRead(interruptSelectPin);
-  if(HIGH == selectState && LOW == selectPinState && current_screen == ui_Home_Page){
+  //      set up for TOP & BOTTOM Button when in POPUP
+  topPinState = digitalRead(interruptTopPin);
+  bottomPinState = digitalRead(interruptBottomPin);
+
+  if(HIGH == selectState && LOW == selectPinState && current_screen == ui_Home_Page && containerVisible == false){
     selectFromHome();
     selectState = LOW;
-
-    // if we are on the popUP the buttons will do a differnt event; 
-
-    
+  }
+  if(HIGH == bottomState && LOW == bottomPinState && current_screen == ui_Home_Page && containerVisible == true){
+    bottomFromContainer();
+    bottomState = LOW;
+  }
+  else if(HIGH == selectState && LOW == selectPinState && current_screen == ui_Home_Page && containerVisible == true){
+    selectfromContainer();
+    selectState = LOW;
+    //completedAmount++;
+  }
+  else if(HIGH == topState && LOW == topPinState && current_screen == ui_Home_Page && containerVisible == true){
+    topfromContainer();
+    topState = LOW;
+    //skippedamount++;
   }
 
   // Handle LVGL tasks
@@ -380,7 +392,20 @@ void updateTaskText(char* top, char* center, char* bottom){
 
 void selectFromHome(){
   lv_event_send(ui_currentTask, LV_EVENT_CLICKED, NULL);
+  containerVisible = true;
 }
 
+void bottomFromContainer(){
+  lv_event_send(ui_bottomButton, LV_EVENT_CLICKED, NULL);
+  containerVisible = false;
+}
 
+void selectfromContainer(){
+  lv_event_send(ui_selectButton, LV_EVENT_CLICKED, NULL);
+  containerVisible = false;
+}
 
+void topfromContainer(){
+  lv_event_send(ui_topButton, LV_EVENT_CLICKED, NULL);
+  containerVisible = false;
+}

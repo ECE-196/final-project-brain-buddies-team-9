@@ -15,8 +15,8 @@ lv_obj_set_style_bg_opa(ui_Focus_Page, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 ui_TabView1 = lv_tabview_create(ui_Focus_Page, LV_DIR_TOP, 50);
 lv_obj_set_width( ui_TabView1, 274);
 lv_obj_set_height( ui_TabView1, 130);
-lv_obj_set_x( ui_TabView1, 1 );
-lv_obj_set_y( ui_TabView1, 2 );
+lv_obj_set_x( ui_TabView1, -11 );
+lv_obj_set_y( ui_TabView1, -2 );
 lv_obj_set_align( ui_TabView1, LV_ALIGN_CENTER );
 lv_obj_clear_flag( ui_TabView1, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
 lv_obj_set_style_bg_color(ui_TabView1, lv_color_hex(0x9CBAC2), LV_PART_MAIN | LV_STATE_DEFAULT );

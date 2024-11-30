@@ -78,16 +78,17 @@ extern lv_obj_t *ui_currentTaskLable;
 extern lv_obj_t *ui_Container1;
 extern lv_obj_t *ui_time;
 extern lv_obj_t *ui_selectedTask;
+void ui_event_topButton( lv_event_t * e);
 extern lv_obj_t *ui_topButton;
-extern lv_obj_t *ui_deleteSelectedTask;
+extern lv_obj_t *ui_skip;
 void ui_event_bottomButton( lv_event_t * e);
 extern lv_obj_t *ui_bottomButton;
 void ui_event_back( lv_event_t * e);
 extern lv_obj_t *ui_back;
 void ui_event_selectButton( lv_event_t * e);
 extern lv_obj_t *ui_selectButton;
-void ui_event_back1( lv_event_t * e);
-extern lv_obj_t *ui_back1;
+void ui_event_done( lv_event_t * e);
+extern lv_obj_t *ui_done;
 // CUSTOM VARIABLES
 
 // EVENTS

@@ -61,16 +61,17 @@ lv_obj_t *ui_currentTaskLable;
 lv_obj_t *ui_Container1;
 lv_obj_t *ui_time;
 lv_obj_t *ui_selectedTask;
+void ui_event_topButton( lv_event_t * e);
 lv_obj_t *ui_topButton;
-lv_obj_t *ui_deleteSelectedTask;
+lv_obj_t *ui_skip;
 void ui_event_bottomButton( lv_event_t * e);
 lv_obj_t *ui_bottomButton;
 void ui_event_back( lv_event_t * e);
 lv_obj_t *ui_back;
 void ui_event_selectButton( lv_event_t * e);
 lv_obj_t *ui_selectButton;
-void ui_event_back1( lv_event_t * e);
-lv_obj_t *ui_back1;
+void ui_event_done( lv_event_t * e);
+lv_obj_t *ui_done;
 // CUSTOM VARIABLES
 
 // EVENTS
@@ -179,6 +180,17 @@ if ( event_code == LV_EVENT_CLICKED) {
 }
 }
 
+void ui_event_topButton( lv_event_t * e) {
+    lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
+
+if ( event_code == LV_EVENT_CLICKED) {
+      _ui_flag_modify( ui_Container1, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
+}
+if ( event_code == LV_EVENT_CLICKED) {
+      _ui_checked_set_text_value( ui_currentTaskLable, target, "Next task", "next next task");
+}
+}
+
 void ui_event_bottomButton( lv_event_t * e) {
     lv_event_code_t event_code = lv_event_get_code(e);
 
@@ -196,14 +208,17 @@ if ( event_code == LV_EVENT_CLICKED) {
 }
 
 void ui_event_selectButton( lv_event_t * e) {
-    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
 
 if ( event_code == LV_EVENT_CLICKED) {
       _ui_flag_modify( ui_Container1, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
 }
+if ( event_code == LV_EVENT_CLICKED) {
+      _ui_checked_set_text_value( ui_currentTaskLable, target, "first task", "secon task");
+}
 }
 
-void ui_event_back1( lv_event_t * e) {
+void ui_event_done( lv_event_t * e) {
     lv_event_code_t event_code = lv_event_get_code(e);
 
 if ( event_code == LV_EVENT_CLICKED) {

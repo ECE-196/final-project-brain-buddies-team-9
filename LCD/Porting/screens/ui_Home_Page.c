@@ -61,8 +61,8 @@ lv_label_set_text(ui_Label10,"FOCUS");
 ui_nextTask = lv_obj_create(ui_Home_Page);
 lv_obj_set_width( ui_nextTask, 184);
 lv_obj_set_height( ui_nextTask, 50);
-lv_obj_set_x( ui_nextTask, 11 );
-lv_obj_set_y( ui_nextTask, 91 );
+lv_obj_set_x( ui_nextTask, 3 );
+lv_obj_set_y( ui_nextTask, 73 );
 lv_obj_set_align( ui_nextTask, LV_ALIGN_CENTER );
 lv_obj_clear_flag( ui_nextTask, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
 
@@ -129,11 +129,11 @@ lv_obj_set_x( ui_topButton, -109 );
 lv_obj_set_y( ui_topButton, 42 );
 lv_obj_set_align( ui_topButton, LV_ALIGN_CENTER );
 
-ui_deleteSelectedTask = lv_label_create(ui_topButton);
-lv_obj_set_width( ui_deleteSelectedTask, LV_SIZE_CONTENT);  /// 1
-lv_obj_set_height( ui_deleteSelectedTask, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_align( ui_deleteSelectedTask, LV_ALIGN_CENTER );
-lv_label_set_text(ui_deleteSelectedTask,"Skip");
+ui_skip = lv_label_create(ui_topButton);
+lv_obj_set_width( ui_skip, LV_SIZE_CONTENT);  /// 1
+lv_obj_set_height( ui_skip, LV_SIZE_CONTENT);   /// 1
+lv_obj_set_align( ui_skip, LV_ALIGN_CENTER );
+lv_label_set_text(ui_skip,"Skip");
 
 ui_bottomButton = lv_btn_create(ui_Container1);
 lv_obj_set_width( ui_bottomButton, 73);
@@ -155,18 +155,19 @@ lv_obj_set_x( ui_selectButton, 101 );
 lv_obj_set_y( ui_selectButton, 78 );
 lv_obj_set_align( ui_selectButton, LV_ALIGN_CENTER );
 
-ui_back1 = lv_label_create(ui_selectButton);
-lv_obj_set_width( ui_back1, LV_SIZE_CONTENT);  /// 1
-lv_obj_set_height( ui_back1, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_align( ui_back1, LV_ALIGN_CENTER );
-lv_label_set_text(ui_back1,"Done");
+ui_done = lv_label_create(ui_selectButton);
+lv_obj_set_width( ui_done, LV_SIZE_CONTENT);  /// 1
+lv_obj_set_height( ui_done, LV_SIZE_CONTENT);   /// 1
+lv_obj_set_align( ui_done, LV_ALIGN_CENTER );
+lv_label_set_text(ui_done,"Done");
 
 lv_obj_add_event_cb(ui_taskFromHome, ui_event_taskFromHome, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_focusFromHome, ui_event_focusFromHome, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_currentTask, ui_event_currentTask, LV_EVENT_ALL, NULL);
+lv_obj_add_event_cb(ui_topButton, ui_event_topButton, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_back, ui_event_back, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_bottomButton, ui_event_bottomButton, LV_EVENT_ALL, NULL);
-lv_obj_add_event_cb(ui_back1, ui_event_back1, LV_EVENT_ALL, NULL);
+lv_obj_add_event_cb(ui_done, ui_event_done, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_selectButton, ui_event_selectButton, LV_EVENT_ALL, NULL);
 
 }
