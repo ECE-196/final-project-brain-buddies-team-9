@@ -85,16 +85,18 @@ void topfromContainer();
 
 // struct for task
 struct task{
+  uint64_t time24hr;   //military time with miliseconds
 	char time[10];
 	char name[100];
 	int skippedAmount;
 	int completedAmount;
 };
 
+uint64_t million = 1*1000*1000
 //set up struct array
 task taskListTwo[10]= {
-  {"8:00am", "Wake up", 0, 0},
-  {"9:00am", "Eat", 0, 0},
+  {10 * million, "8:00am", "Wake up", 0, 0},
+  {1*60* million,"9:00am", "Eat", 0, 0},
   {"10:00am", "Go to school", 0, 0},
   {"11:00am", "Class", 0, 0},
   {"3:00pm", "Lunch", 0, 0},
@@ -104,6 +106,7 @@ task taskListTwo[10]= {
   {"8:00pm", "Shower", 0, 0},
   {"10:00pm", "Sleep", 0, 0},
 };
+
 int taskCounter2 = 0;
 int taskListLength2 = 10;
 
@@ -214,6 +217,7 @@ void setup(){
   }
 
 void loop(){
+  currentMicros = esp_timer_get_time();   
   lv_obj_t* current_screen = lv_scr_act();
 
   //      set up for UP Button
@@ -419,6 +423,7 @@ void topfromContainer(){
 //    Function to assign tasks when using decision buttons
 
 void updateTasksTextFromHome(const char* action) {
+
     if (strcmp(action, "SKIP") == 0) {
         taskListTwo[taskCounter2].skippedAmount ++;
         taskCounter2++;
@@ -428,6 +433,7 @@ void updateTasksTextFromHome(const char* action) {
         lv_label_set_text(ui_currentTaskLable, taskListTwo[taskCounter2].name);
         lv_label_set_text(ui_nextTasklabel, taskListTwo[taskCounter2 + 1].name);
     } 
+
     else if (strcmp(action, "DONE") == 0) {
         taskListTwo[taskCounter2].completedAmount ++;
         taskCounter2++;
@@ -435,6 +441,6 @@ void updateTasksTextFromHome(const char* action) {
             taskCounter2 = 0; 
         }
         lv_label_set_text(ui_currentTaskLable, taskListTwo[taskCounter2].name);
-        lv_label_set_text(ui_nextTasklabel, taskListTwo[taskCounter2 +  2].name);
+        lv_label_set_text(ui_nextTasklabel, taskListTwo[taskCounter2 + 1].name);
     } 
 }
