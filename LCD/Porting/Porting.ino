@@ -92,19 +92,19 @@ struct task{
 	int completedAmount;
 };
 
-uint64_t million = 1*1000*1000
+uint64_t million = 1*1000*1000;
 //set up struct array
 task taskListTwo[10]= {
   {10 * million, "8:00am", "Wake up", 0, 0},
   {1*60* million,"9:00am", "Eat", 0, 0},
-  {"10:00am", "Go to school", 0, 0},
-  {"11:00am", "Class", 0, 0},
-  {"3:00pm", "Lunch", 0, 0},
-  {"5:00pm", "Leave school", 0, 0},
-  {"6:00pm", "Gym", 0, 0},
-  {"7:00pm", "Dinner", 0, 0},
-  {"8:00pm", "Shower", 0, 0},
-  {"10:00pm", "Sleep", 0, 0},
+  {1*60* million,"10:00am", "Go to school", 0, 0},
+  {1*60* million,"11:00am", "Class", 0, 0},
+  {1*60* million,"3:00pm", "Lunch", 0, 0},
+  {1*60* million,"5:00pm", "Leave school", 0, 0},
+  {1*60* million,"6:00pm", "Gym", 0, 0},
+  {1*60* million,"7:00pm", "Dinner", 0, 0},
+  {1*60* million,"8:00pm", "Shower", 0, 0},
+  {1*60* million,"10:00pm", "Sleep", 0, 0},
 };
 
 int taskCounter2 = 0;
@@ -154,7 +154,6 @@ volatile byte containerVisible = false;
 
 // get root widget
 lv_obj_t* root_widget = lv_obj_get_parent(lv_scr_act());
-
 
 void setup(){
     Serial.begin(115200);    
@@ -217,7 +216,8 @@ void setup(){
   }
 
 void loop(){
-  currentMicros = esp_timer_get_time();   
+  uint64_t init_time = esp_timer_get_time();
+  uint64_t currentMicros = esp_timer_get_time();   
   lv_obj_t* current_screen = lv_scr_act();
 
   //      set up for UP Button
@@ -258,9 +258,9 @@ void loop(){
     leftState = LOW;
   }
 
-
   //      set up for SELECT Button when in HOMEPAGE
   selectPinState = digitalRead(interruptSelectPin);
+
   //      set up for TOP & BOTTOM Button when in POPUP
   topPinState = digitalRead(interruptTopPin);
   bottomPinState = digitalRead(interruptBottomPin);
@@ -276,12 +276,21 @@ void loop(){
   else if(HIGH == selectState && LOW == selectPinState && current_screen == ui_Home_Page && containerVisible == true){
     selectfromContainer();
     selectState = LOW;
-    //completedAmount++;
   }
   else if(HIGH == topState && LOW == topPinState && current_screen == ui_Home_Page && containerVisible == true){
     topfromContainer();
     topState = LOW;
-    //skippedamount++;
+  }
+
+
+  // Havng a notification POPUP
+  //if (task_time_in_microseconds + init_time < currentMicrosec){
+	//	do the popup/notif
+  //time24hr
+
+  if(taskListTwo[taskCounter2].time24hr + init_time < currentMicros){
+    lv_event_send(ui_currentTask, LV_EVENT_CLICKED, NULL);
+    containerVisible = true;
   }
 
   // Handle LVGL tasks
@@ -290,7 +299,7 @@ void loop(){
 }
 
 
-//      SET UP STATES OF BUTTONS
+                  //      SET UP STATES OF BUTTONS
 //   Dpad 
 void changeUpState(){
   //  update UP button
@@ -325,7 +334,7 @@ void changeBottomState(){
 }
 
 
-//      CUSTOM FUNCTIONS FOR PAGE SWITCHING
+              //      CUSTOM FUNCTIONS FOR PAGE SWITCHING
 
 //    current is Focus page:
 void homeFromFocus(){   //  press RIGHT Button
@@ -350,9 +359,10 @@ void homeFromTask(){    //  press LEFT Button
   lv_event_send(ui_homeFromTask, LV_EVENT_CLICKED, NULL );
 }
 
-//      CUSTOM FUNCTIONS FOR NAVEGATING IN PAGES 
 
-//    Using UP button on TASK page
+                      //      CUSTOM FUNCTIONS FOR NAVEGATING IN PAGES 
+
+//      Using UP button on TASK page
 void upFromTask(){
   taskCounter--;
   if(taskCounter == -1){
@@ -397,7 +407,6 @@ void updateTaskText(char* top, char* center, char* bottom){
 
 
 //      CUSTOM FUNCTIONS FOR NAVEGATING IN HOME PAGE
-
 void selectFromHome(){
   lv_event_send(ui_currentTask, LV_EVENT_CLICKED, NULL);
   containerVisible = true;
@@ -421,7 +430,6 @@ void topfromContainer(){
 }
 
 //    Function to assign tasks when using decision buttons
-
 void updateTasksTextFromHome(const char* action) {
 
     if (strcmp(action, "SKIP") == 0) {
@@ -444,3 +452,4 @@ void updateTasksTextFromHome(const char* action) {
         lv_label_set_text(ui_nextTasklabel, taskListTwo[taskCounter2 + 1].name);
     } 
 }
+
