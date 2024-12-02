@@ -34,7 +34,7 @@ void ui_Task_Page_screen_init(void);
 void ui_event_Task_Page( lv_event_t * e);
 extern lv_obj_t *ui_Task_Page;
 extern lv_obj_t *ui_topTask;
-extern lv_obj_t *ui_curse;
+extern lv_obj_t *ui_curseBox;
 extern lv_obj_t *ui_centerTask;
 extern lv_obj_t *ui_bottomTask;
 void ui_event_UpButton( lv_event_t * e);
@@ -45,31 +45,31 @@ extern lv_obj_t *ui_downB;
 void ui_event_homeFromTask( lv_event_t * e);
 extern lv_obj_t *ui_homeFromTask;
 extern lv_obj_t *ui_downB2;
+extern lv_obj_t *ui_Label2;
 // CUSTOM VARIABLES
 
 // SCREEN: ui_Focus_Page
 void ui_Focus_Page_screen_init(void);
 void ui_event_Focus_Page( lv_event_t * e);
 extern lv_obj_t *ui_Focus_Page;
-extern lv_obj_t *ui_TabView1;
 extern lv_obj_t *ui_clock;
-extern lv_obj_t *ui_title_for_page;
-extern lv_obj_t *ui_Label2;
+extern lv_obj_t *ui_focusPageLabel;
+extern lv_obj_t *ui_actualTask;
 void ui_event_homeFromFocus( lv_event_t * e);
 extern lv_obj_t *ui_homeFromFocus;
-extern lv_obj_t *ui_Label7;
+extern lv_obj_t *ui_homeButtonFromFocus;
 // CUSTOM VARIABLES
 
 // SCREEN: ui_Home_Page
 void ui_Home_Page_screen_init(void);
 extern lv_obj_t *ui_Home_Page;
-extern lv_obj_t *ui_Label1;
+extern lv_obj_t *ui_homePageLabel;
 void ui_event_taskFromHome( lv_event_t * e);
 extern lv_obj_t *ui_taskFromHome;
-extern lv_obj_t *ui_Label9;
+extern lv_obj_t *ui_taskButtonFromHome;
 void ui_event_focusFromHome( lv_event_t * e);
 extern lv_obj_t *ui_focusFromHome;
-extern lv_obj_t *ui_Label10;
+extern lv_obj_t *ui_focusButtonFromHome;
 extern lv_obj_t *ui_nextTask;
 extern lv_obj_t *ui_nextTasklabel;
 void ui_event_currentTask( lv_event_t * e);

@@ -15,7 +15,7 @@ void ui_Task_Page_screen_init(void);
 void ui_event_Task_Page( lv_event_t * e);
 lv_obj_t *ui_Task_Page;
 lv_obj_t *ui_topTask;
-lv_obj_t *ui_curse;
+lv_obj_t *ui_curseBox;
 lv_obj_t *ui_centerTask;
 lv_obj_t *ui_bottomTask;
 void ui_event_UpButton( lv_event_t * e);
@@ -26,6 +26,7 @@ lv_obj_t *ui_downB;
 void ui_event_homeFromTask( lv_event_t * e);
 lv_obj_t *ui_homeFromTask;
 lv_obj_t *ui_downB2;
+lv_obj_t *ui_Label2;
 // CUSTOM VARIABLES
 
 
@@ -33,26 +34,25 @@ lv_obj_t *ui_downB2;
 void ui_Focus_Page_screen_init(void);
 void ui_event_Focus_Page( lv_event_t * e);
 lv_obj_t *ui_Focus_Page;
-lv_obj_t *ui_TabView1;
 lv_obj_t *ui_clock;
-lv_obj_t *ui_title_for_page;
-lv_obj_t *ui_Label2;
+lv_obj_t *ui_focusPageLabel;
+lv_obj_t *ui_actualTask;
 void ui_event_homeFromFocus( lv_event_t * e);
 lv_obj_t *ui_homeFromFocus;
-lv_obj_t *ui_Label7;
+lv_obj_t *ui_homeButtonFromFocus;
 // CUSTOM VARIABLES
 
 
 // SCREEN: ui_Home_Page
 void ui_Home_Page_screen_init(void);
 lv_obj_t *ui_Home_Page;
-lv_obj_t *ui_Label1;
+lv_obj_t *ui_homePageLabel;
 void ui_event_taskFromHome( lv_event_t * e);
 lv_obj_t *ui_taskFromHome;
-lv_obj_t *ui_Label9;
+lv_obj_t *ui_taskButtonFromHome;
 void ui_event_focusFromHome( lv_event_t * e);
 lv_obj_t *ui_focusFromHome;
-lv_obj_t *ui_Label10;
+lv_obj_t *ui_focusButtonFromHome;
 lv_obj_t *ui_nextTask;
 lv_obj_t *ui_nextTasklabel;
 void ui_event_currentTask( lv_event_t * e);
@@ -187,7 +187,7 @@ if ( event_code == LV_EVENT_CLICKED) {
       _ui_flag_modify( ui_Container1, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
 }
 if ( event_code == LV_EVENT_CLICKED) {
-      _ui_checked_set_text_value( ui_currentTaskLable, target, "Next task", "next next task");
+      _ui_checked_set_text_value( ui_currentTaskLable, target, "jafsdsd", "Next Taskgjskdjfdd");
 }
 }
 

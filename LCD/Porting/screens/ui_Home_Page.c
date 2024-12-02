@@ -9,86 +9,93 @@ void ui_Home_Page_screen_init(void)
 {
 ui_Home_Page = lv_obj_create(NULL);
 lv_obj_clear_flag( ui_Home_Page, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
-lv_obj_set_style_bg_color(ui_Home_Page, lv_color_hex(0x758173), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_bg_color(ui_Home_Page, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_bg_opa(ui_Home_Page, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 
-ui_Label1 = lv_label_create(ui_Home_Page);
-lv_obj_set_width( ui_Label1, LV_SIZE_CONTENT);  /// 1
-lv_obj_set_height( ui_Label1, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_Label1, -131 );
-lv_obj_set_y( ui_Label1, -109 );
-lv_obj_set_align( ui_Label1, LV_ALIGN_CENTER );
-lv_label_set_text(ui_Label1,"HOME PAGE ;)");
+ui_homePageLabel = lv_label_create(ui_Home_Page);
+lv_obj_set_width( ui_homePageLabel, LV_SIZE_CONTENT);  /// 1
+lv_obj_set_height( ui_homePageLabel, LV_SIZE_CONTENT);   /// 1
+lv_obj_set_x( ui_homePageLabel, -132 );
+lv_obj_set_y( ui_homePageLabel, -141 );
+lv_obj_set_align( ui_homePageLabel, LV_ALIGN_CENTER );
+lv_label_set_text(ui_homePageLabel,"HOME PAGE ;)");
+lv_obj_set_style_text_color(ui_homePageLabel, lv_color_hex(0x003049), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_text_opa(ui_homePageLabel, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_font(ui_homePageLabel, &lv_font_montserrat_28, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 ui_taskFromHome = lv_btn_create(ui_Home_Page);
-lv_obj_set_width( ui_taskFromHome, 61);
-lv_obj_set_height( ui_taskFromHome, 17);
+lv_obj_set_width( ui_taskFromHome, 65);
+lv_obj_set_height( ui_taskFromHome, 20);
 lv_obj_set_x( ui_taskFromHome, 203 );
 lv_obj_set_y( ui_taskFromHome, 0 );
 lv_obj_set_align( ui_taskFromHome, LV_ALIGN_CENTER );
-lv_obj_set_style_bg_color(ui_taskFromHome, lv_color_hex(0x080707), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_bg_color(ui_taskFromHome, lv_color_hex(0x003049), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_bg_opa(ui_taskFromHome, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 lv_obj_set_style_text_color(ui_taskFromHome, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_text_opa(ui_taskFromHome, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 
-ui_Label9 = lv_label_create(ui_taskFromHome);
-lv_obj_set_width( ui_Label9, LV_SIZE_CONTENT);  /// 1
-lv_obj_set_height( ui_Label9, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_Label9, -1 );
-lv_obj_set_y( ui_Label9, 0 );
-lv_obj_set_align( ui_Label9, LV_ALIGN_CENTER );
-lv_label_set_text(ui_Label9,"TASKS");
+ui_taskButtonFromHome = lv_label_create(ui_taskFromHome);
+lv_obj_set_width( ui_taskButtonFromHome, LV_SIZE_CONTENT);  /// 1
+lv_obj_set_height( ui_taskButtonFromHome, LV_SIZE_CONTENT);   /// 1
+lv_obj_set_x( ui_taskButtonFromHome, -1 );
+lv_obj_set_y( ui_taskButtonFromHome, 0 );
+lv_obj_set_align( ui_taskButtonFromHome, LV_ALIGN_CENTER );
+lv_label_set_text(ui_taskButtonFromHome,"TASK");
 
 ui_focusFromHome = lv_btn_create(ui_Home_Page);
-lv_obj_set_width( ui_focusFromHome, 61);
-lv_obj_set_height( ui_focusFromHome, 17);
-lv_obj_set_x( ui_focusFromHome, -202 );
+lv_obj_set_width( ui_focusFromHome, 65);
+lv_obj_set_height( ui_focusFromHome, 20);
+lv_obj_set_x( ui_focusFromHome, -203 );
 lv_obj_set_y( ui_focusFromHome, 0 );
 lv_obj_set_align( ui_focusFromHome, LV_ALIGN_CENTER );
-lv_obj_set_style_bg_color(ui_focusFromHome, lv_color_hex(0x080707), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_bg_color(ui_focusFromHome, lv_color_hex(0x003049), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_bg_opa(ui_focusFromHome, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 lv_obj_set_style_text_color(ui_focusFromHome, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_text_opa(ui_focusFromHome, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 
-ui_Label10 = lv_label_create(ui_focusFromHome);
-lv_obj_set_width( ui_Label10, LV_SIZE_CONTENT);  /// 1
-lv_obj_set_height( ui_Label10, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_Label10, -1 );
-lv_obj_set_y( ui_Label10, 0 );
-lv_obj_set_align( ui_Label10, LV_ALIGN_CENTER );
-lv_label_set_text(ui_Label10,"FOCUS");
+ui_focusButtonFromHome = lv_label_create(ui_focusFromHome);
+lv_obj_set_width( ui_focusButtonFromHome, LV_SIZE_CONTENT);  /// 1
+lv_obj_set_height( ui_focusButtonFromHome, LV_SIZE_CONTENT);   /// 1
+lv_obj_set_x( ui_focusButtonFromHome, -1 );
+lv_obj_set_y( ui_focusButtonFromHome, 0 );
+lv_obj_set_align( ui_focusButtonFromHome, LV_ALIGN_CENTER );
+lv_label_set_text(ui_focusButtonFromHome,"FOCUS");
 
 ui_nextTask = lv_obj_create(ui_Home_Page);
 lv_obj_set_width( ui_nextTask, 184);
 lv_obj_set_height( ui_nextTask, 50);
-lv_obj_set_x( ui_nextTask, 3 );
-lv_obj_set_y( ui_nextTask, 73 );
+lv_obj_set_x( ui_nextTask, 0 );
+lv_obj_set_y( ui_nextTask, 60 );
 lv_obj_set_align( ui_nextTask, LV_ALIGN_CENTER );
 lv_obj_clear_flag( ui_nextTask, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
+lv_obj_set_style_bg_color(ui_nextTask, lv_color_hex(0x003049), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_bg_opa(ui_nextTask, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 ui_nextTasklabel = lv_label_create(ui_nextTask);
 lv_obj_set_width( ui_nextTasklabel, LV_SIZE_CONTENT);  /// 1
 lv_obj_set_height( ui_nextTasklabel, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_nextTasklabel, 1 );
-lv_obj_set_y( ui_nextTasklabel, 1 );
 lv_obj_set_align( ui_nextTasklabel, LV_ALIGN_CENTER );
 lv_label_set_text(ui_nextTasklabel,"Next Task");
+lv_obj_set_style_text_color(ui_nextTasklabel, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_text_opa(ui_nextTasklabel, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 ui_currentTask = lv_obj_create(ui_Home_Page);
 lv_obj_set_width( ui_currentTask, 250);
 lv_obj_set_height( ui_currentTask, 69);
-lv_obj_set_x( ui_currentTask, 6 );
-lv_obj_set_y( ui_currentTask, -12 );
+lv_obj_set_x( ui_currentTask, 0 );
+lv_obj_set_y( ui_currentTask, -5 );
 lv_obj_set_align( ui_currentTask, LV_ALIGN_CENTER );
 lv_obj_clear_flag( ui_currentTask, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
+lv_obj_set_style_bg_color(ui_currentTask, lv_color_hex(0x003049), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_bg_opa(ui_currentTask, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 ui_currentTaskLable = lv_label_create(ui_currentTask);
 lv_obj_set_width( ui_currentTaskLable, LV_SIZE_CONTENT);  /// 1
 lv_obj_set_height( ui_currentTaskLable, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_currentTaskLable, 1 );
-lv_obj_set_y( ui_currentTaskLable, 1 );
 lv_obj_set_align( ui_currentTaskLable, LV_ALIGN_CENTER );
 lv_label_set_text(ui_currentTaskLable,"Current Task");
+lv_obj_set_style_text_color(ui_currentTaskLable, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_text_opa(ui_currentTaskLable, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 ui_Container1 = lv_obj_create(ui_Home_Page);
 lv_obj_remove_style_all(ui_Container1);
