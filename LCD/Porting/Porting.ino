@@ -92,19 +92,23 @@ struct task{
 	int completedAmount;
 };
 
+uint64_t init_time; // here accessable everywhere, const since only set once.
+uint64_t currentMicros;
+uint64_t previousMicros;
+
 uint64_t million = 1*1000*1000;
 //set up struct array
 task taskListTwo[10]= {
   {10 * million, "8:00am", "Wake up", 0, 0},
-  {1*60* million,"9:00am", "Eat", 0, 0},
-  {1*60* million,"10:00am", "Go to school", 0, 0},
-  {1*60* million,"11:00am", "Class", 0, 0},
-  {1*60* million,"3:00pm", "Lunch", 0, 0},
-  {1*60* million,"5:00pm", "Leave school", 0, 0},
-  {1*60* million,"6:00pm", "Gym", 0, 0},
-  {1*60* million,"7:00pm", "Dinner", 0, 0},
-  {1*60* million,"8:00pm", "Shower", 0, 0},
-  {1*60* million,"10:00pm", "Sleep", 0, 0},
+  {20* million,"9:00am", "Eat", 0, 0},
+  {3*10* million,"10:00am", "Go to school", 0, 0},
+  {4*10* million,"11:00am", "Class", 0, 0},
+  {4*60* million,"3:00pm", "Lunch", 0, 0},
+  {5*60* million,"5:00pm", "Leave school", 0, 0},
+  {6*60* million,"6:00pm", "Gym", 0, 0},
+  {7*60* million,"7:00pm", "Dinner", 0, 0},
+  {8*60* million,"8:00pm", "Shower", 0, 0},
+  {9*60* million,"10:00pm", "Sleep", 0, 0},
 };
 
 int taskCounter2 = 0;
@@ -213,11 +217,13 @@ void setup(){
     lvgl_port_unlock();
 
     Serial.println("Squareline porting example end");
+    init_time = esp_timer_get_time();
   }
 
 void loop(){
-  uint64_t init_time = esp_timer_get_time();
-  uint64_t currentMicros = esp_timer_get_time();   
+
+  previousMicros = currentMicros;
+  currentMicros = esp_timer_get_time();   
   lv_obj_t* current_screen = lv_scr_act();
 
   //      set up for UP Button
@@ -289,9 +295,14 @@ void loop(){
   //time24hr
 
   if(taskListTwo[taskCounter2].time24hr + init_time < currentMicros){
-    lv_event_send(ui_currentTask, LV_EVENT_CLICKED, NULL);
+    lv_obj_clear_flag(ui_Container1, LV_OBJ_FLAG_HIDDEN);
     containerVisible = true;
   }
+  /*
+There are some attributes which can be enabled/disabled by lv_obj_add/clear_flag(obj, LV_OBJ_FLAG_...):
+
+LV_OBJ_FLAG_HIDDEN Make the object hidden. (Like it wasn't there at all)
+  */
 
   // Handle LVGL tasks
   lv_task_handler();
