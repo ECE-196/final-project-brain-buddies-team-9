@@ -116,18 +116,23 @@ lv_obj_set_style_border_width(ui_Container1, 1, LV_PART_MAIN| LV_STATE_DEFAULT);
 ui_time = lv_label_create(ui_Container1);
 lv_obj_set_width( ui_time, LV_SIZE_CONTENT);  /// 1
 lv_obj_set_height( ui_time, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_time, 10 );
-lv_obj_set_y( ui_time, 17 );
+lv_obj_set_x( ui_time, 0 );
+lv_obj_set_y( ui_time, 5 );
 lv_obj_set_align( ui_time, LV_ALIGN_CENTER );
 lv_label_set_text(ui_time,"11:00 PM");
+lv_obj_set_style_text_color(ui_time, lv_color_hex(0x003049), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_text_opa(ui_time, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 ui_selectedTask = lv_label_create(ui_Container1);
 lv_obj_set_width( ui_selectedTask, LV_SIZE_CONTENT);  /// 1
 lv_obj_set_height( ui_selectedTask, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_selectedTask, 5 );
-lv_obj_set_y( ui_selectedTask, -35 );
+lv_obj_set_x( ui_selectedTask, 0 );
+lv_obj_set_y( ui_selectedTask, -20 );
 lv_obj_set_align( ui_selectedTask, LV_ALIGN_CENTER );
 lv_label_set_text(ui_selectedTask,"\"Selected Task\"");
+lv_obj_set_style_text_color(ui_selectedTask, lv_color_hex(0x003049), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_text_opa(ui_selectedTask, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_font(ui_selectedTask, &lv_font_montserrat_18, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 ui_topButton = lv_btn_create(ui_Container1);
 lv_obj_set_width( ui_topButton, 75);
@@ -135,6 +140,8 @@ lv_obj_set_height( ui_topButton, 24);
 lv_obj_set_x( ui_topButton, -109 );
 lv_obj_set_y( ui_topButton, 42 );
 lv_obj_set_align( ui_topButton, LV_ALIGN_CENTER );
+lv_obj_set_style_bg_color(ui_topButton, lv_color_hex(0x003049), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_bg_opa(ui_topButton, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 ui_skip = lv_label_create(ui_topButton);
 lv_obj_set_width( ui_skip, LV_SIZE_CONTENT);  /// 1
@@ -148,6 +155,8 @@ lv_obj_set_height( ui_bottomButton, 22);
 lv_obj_set_x( ui_bottomButton, -110 );
 lv_obj_set_y( ui_bottomButton, 84 );
 lv_obj_set_align( ui_bottomButton, LV_ALIGN_CENTER );
+lv_obj_set_style_bg_color(ui_bottomButton, lv_color_hex(0x003049), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_bg_opa(ui_bottomButton, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 ui_back = lv_label_create(ui_bottomButton);
 lv_obj_set_width( ui_back, LV_SIZE_CONTENT);  /// 1
@@ -161,6 +170,8 @@ lv_obj_set_height( ui_selectButton, 22);
 lv_obj_set_x( ui_selectButton, 101 );
 lv_obj_set_y( ui_selectButton, 78 );
 lv_obj_set_align( ui_selectButton, LV_ALIGN_CENTER );
+lv_obj_set_style_bg_color(ui_selectButton, lv_color_hex(0x003049), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_bg_opa(ui_selectButton, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 ui_done = lv_label_create(ui_selectButton);
 lv_obj_set_width( ui_done, LV_SIZE_CONTENT);  /// 1
