@@ -299,7 +299,7 @@ void loop(){
 }
 
 
-                  //      SET UP STATES OF BUTTONS
+                //      SET UP STATES OF BUTTONS
 //   Dpad 
 void changeUpState(){
   //  update UP button
