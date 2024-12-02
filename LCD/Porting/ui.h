@@ -23,6 +23,8 @@ extern "C" {
 #endif
 
 #include "ui_helpers.h"
+#include "components/ui_comp.h"
+#include "components/ui_comp_hook.h"
 #include "ui_events.h"
 #include "ui_theme_manager.h"
 #include "ui_themes.h"
@@ -83,12 +85,12 @@ extern lv_obj_t *ui_topButton;
 extern lv_obj_t *ui_skip;
 void ui_event_bottomButton( lv_event_t * e);
 extern lv_obj_t *ui_bottomButton;
-void ui_event_back( lv_event_t * e);
-extern lv_obj_t *ui_back;
-void ui_event_selectButton( lv_event_t * e);
-extern lv_obj_t *ui_selectButton;
 void ui_event_done( lv_event_t * e);
 extern lv_obj_t *ui_done;
+void ui_event_selectButton( lv_event_t * e);
+extern lv_obj_t *ui_selectButton;
+void ui_event_back( lv_event_t * e);
+extern lv_obj_t *ui_back;
 // CUSTOM VARIABLES
 
 // EVENTS

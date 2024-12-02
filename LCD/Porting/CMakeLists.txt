@@ -1,4 +1,6 @@
-SET(SOURCES screens/ui_Task_Page.c
+SET(SOURCES components/ui_comp_container1.c
+    components/ui_comp.c
+    screens/ui_Task_Page.c
     screens/ui_Focus_Page.c
     screens/ui_Home_Page.c
     ui_theme_manager.c
