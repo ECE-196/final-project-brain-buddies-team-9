@@ -16,15 +16,16 @@ ui_topTask = lv_label_create(ui_Task_Page);
 lv_obj_set_width( ui_topTask, LV_SIZE_CONTENT);  /// 1
 lv_obj_set_height( ui_topTask, LV_SIZE_CONTENT);   /// 1
 lv_obj_set_x( ui_topTask, 0 );
-lv_obj_set_y( ui_topTask, -35 );
+lv_obj_set_y( ui_topTask, -55 );
 lv_obj_set_align( ui_topTask, LV_ALIGN_CENTER );
 lv_label_set_text(ui_topTask,"topTask");
 lv_obj_set_style_text_color(ui_topTask, lv_color_hex(0x003049), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_text_opa(ui_topTask, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_font(ui_topTask, &lv_font_montserrat_18, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 ui_curseBox = lv_obj_create(ui_Task_Page);
-lv_obj_set_width( ui_curseBox, 212);
-lv_obj_set_height( ui_curseBox, 50);
+lv_obj_set_width( ui_curseBox, 250);
+lv_obj_set_height( ui_curseBox, 69);
 lv_obj_set_align( ui_curseBox, LV_ALIGN_CENTER );
 lv_obj_clear_flag( ui_curseBox, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
 lv_obj_set_style_bg_color(ui_curseBox, lv_color_hex(0x003049), LV_PART_MAIN | LV_STATE_DEFAULT );
@@ -43,11 +44,12 @@ ui_bottomTask = lv_label_create(ui_Task_Page);
 lv_obj_set_width( ui_bottomTask, LV_SIZE_CONTENT);  /// 1
 lv_obj_set_height( ui_bottomTask, LV_SIZE_CONTENT);   /// 1
 lv_obj_set_x( ui_bottomTask, 0 );
-lv_obj_set_y( ui_bottomTask, 35 );
+lv_obj_set_y( ui_bottomTask, 55 );
 lv_obj_set_align( ui_bottomTask, LV_ALIGN_CENTER );
 lv_label_set_text(ui_bottomTask,"bottomTask");
 lv_obj_set_style_text_color(ui_bottomTask, lv_color_hex(0x003049), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_text_opa(ui_bottomTask, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_font(ui_bottomTask, &lv_font_montserrat_18, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 ui_UpButton = lv_btn_create(ui_Task_Page);
 lv_obj_set_width( ui_UpButton, 65);
@@ -109,13 +111,13 @@ lv_label_set_text(ui_downB2,"HOME");
 ui_Label2 = lv_label_create(ui_Task_Page);
 lv_obj_set_width( ui_Label2, LV_SIZE_CONTENT);  /// 1
 lv_obj_set_height( ui_Label2, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_Label2, 193 );
-lv_obj_set_y( ui_Label2, 147 );
+lv_obj_set_x( ui_Label2, 187 );
+lv_obj_set_y( ui_Label2, 148 );
 lv_obj_set_align( ui_Label2, LV_ALIGN_CENTER );
 lv_label_set_text(ui_Label2,"TASK PAGE <3");
 lv_obj_set_style_text_color(ui_Label2, lv_color_hex(0x003049), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_text_opa(ui_Label2, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_text_font(ui_Label2, &lv_font_montserrat_12, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_font(ui_Label2, &lv_font_montserrat_14, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 lv_obj_add_event_cb(ui_UpButton, ui_event_UpButton, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_homeFromTask, ui_event_homeFromTask, LV_EVENT_ALL, NULL);
