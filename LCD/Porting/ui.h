@@ -36,6 +36,7 @@ void ui_Task_Page_screen_init(void);
 void ui_event_Task_Page( lv_event_t * e);
 extern lv_obj_t *ui_Task_Page;
 extern lv_obj_t *ui_topTask;
+void ui_event_curseBox( lv_event_t * e);
 extern lv_obj_t *ui_curseBox;
 extern lv_obj_t *ui_centerTask;
 extern lv_obj_t *ui_bottomTask;
@@ -48,6 +49,20 @@ void ui_event_homeFromTask( lv_event_t * e);
 extern lv_obj_t *ui_homeFromTask;
 extern lv_obj_t *ui_downB2;
 extern lv_obj_t *ui_Label2;
+extern lv_obj_t *ui_notification;
+extern lv_obj_t *ui_time1;
+extern lv_obj_t *ui_selectedTask1;
+void ui_event_topButton1( lv_event_t * e);
+extern lv_obj_t *ui_topButton1;
+extern lv_obj_t *ui_skip1;
+void ui_event_bottomButton1( lv_event_t * e);
+extern lv_obj_t *ui_bottomButton1;
+void ui_event_done1( lv_event_t * e);
+extern lv_obj_t *ui_done1;
+void ui_event_selectButton1( lv_event_t * e);
+extern lv_obj_t *ui_selectButton1;
+void ui_event_back1( lv_event_t * e);
+extern lv_obj_t *ui_back1;
 // CUSTOM VARIABLES
 
 // SCREEN: ui_Focus_Page

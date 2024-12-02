@@ -15,6 +15,7 @@ void ui_Task_Page_screen_init(void);
 void ui_event_Task_Page( lv_event_t * e);
 lv_obj_t *ui_Task_Page;
 lv_obj_t *ui_topTask;
+void ui_event_curseBox( lv_event_t * e);
 lv_obj_t *ui_curseBox;
 lv_obj_t *ui_centerTask;
 lv_obj_t *ui_bottomTask;
@@ -27,6 +28,20 @@ void ui_event_homeFromTask( lv_event_t * e);
 lv_obj_t *ui_homeFromTask;
 lv_obj_t *ui_downB2;
 lv_obj_t *ui_Label2;
+lv_obj_t *ui_notification;
+lv_obj_t *ui_time1;
+lv_obj_t *ui_selectedTask1;
+void ui_event_topButton1( lv_event_t * e);
+lv_obj_t *ui_topButton1;
+lv_obj_t *ui_skip1;
+void ui_event_bottomButton1( lv_event_t * e);
+lv_obj_t *ui_bottomButton1;
+void ui_event_done1( lv_event_t * e);
+lv_obj_t *ui_done1;
+void ui_event_selectButton1( lv_event_t * e);
+lv_obj_t *ui_selectButton1;
+void ui_event_back1( lv_event_t * e);
+lv_obj_t *ui_back1;
 // CUSTOM VARIABLES
 
 
@@ -124,6 +139,14 @@ if ( event_code == LV_EVENT_CLICKED) {
 }
 }
 
+void ui_event_curseBox( lv_event_t * e) {
+    lv_event_code_t event_code = lv_event_get_code(e);
+
+if ( event_code == LV_EVENT_CLICKED) {
+      _ui_flag_modify( ui_notification, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_REMOVE);
+}
+}
+
 void ui_event_UpButton( lv_event_t * e) {
     lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
 
@@ -133,6 +156,52 @@ if ( event_code == LV_EVENT_CLICKED) {
 }
 
 void ui_event_homeFromTask( lv_event_t * e) {
+    lv_event_code_t event_code = lv_event_get_code(e);
+
+if ( event_code == LV_EVENT_CLICKED) {
+      _ui_screen_change( &ui_Home_Page, LV_SCR_LOAD_ANIM_NONE, 500, 0, &ui_Home_Page_screen_init);
+}
+}
+
+void ui_event_topButton1( lv_event_t * e) {
+    lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
+
+if ( event_code == LV_EVENT_CLICKED) {
+      _ui_flag_modify( ui_Container1, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
+}
+if ( event_code == LV_EVENT_CLICKED) {
+      _ui_checked_set_text_value( ui_currentTaskLable, target, "jafsdsd", "Next Taskgjskdjfdd");
+}
+}
+
+void ui_event_bottomButton1( lv_event_t * e) {
+    lv_event_code_t event_code = lv_event_get_code(e);
+
+if ( event_code == LV_EVENT_CLICKED) {
+      _ui_flag_modify( ui_Container1, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
+}
+}
+
+void ui_event_done1( lv_event_t * e) {
+    lv_event_code_t event_code = lv_event_get_code(e);
+
+if ( event_code == LV_EVENT_CLICKED) {
+      _ui_screen_change( &ui_Home_Page, LV_SCR_LOAD_ANIM_NONE, 500, 0, &ui_Home_Page_screen_init);
+}
+}
+
+void ui_event_selectButton1( lv_event_t * e) {
+    lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
+
+if ( event_code == LV_EVENT_CLICKED) {
+      _ui_flag_modify( ui_Container1, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
+}
+if ( event_code == LV_EVENT_CLICKED) {
+      _ui_checked_set_text_value( ui_currentTaskLable, target, "first task", "secon task");
+}
+}
+
+void ui_event_back1( lv_event_t * e) {
     lv_event_code_t event_code = lv_event_get_code(e);
 
 if ( event_code == LV_EVENT_CLICKED) {
