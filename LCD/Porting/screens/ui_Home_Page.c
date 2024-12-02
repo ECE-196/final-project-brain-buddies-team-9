@@ -15,10 +15,10 @@ lv_obj_set_style_bg_opa(ui_Home_Page, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 ui_homePageLabel = lv_label_create(ui_Home_Page);
 lv_obj_set_width( ui_homePageLabel, LV_SIZE_CONTENT);  /// 1
 lv_obj_set_height( ui_homePageLabel, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_homePageLabel, -132 );
-lv_obj_set_y( ui_homePageLabel, -141 );
+lv_obj_set_x( ui_homePageLabel, 2 );
+lv_obj_set_y( ui_homePageLabel, -136 );
 lv_obj_set_align( ui_homePageLabel, LV_ALIGN_CENTER );
-lv_label_set_text(ui_homePageLabel,"HOME PAGE ;)");
+lv_label_set_text(ui_homePageLabel,"HOME ;)");
 lv_obj_set_style_text_color(ui_homePageLabel, lv_color_hex(0x003049), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_text_opa(ui_homePageLabel, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 lv_obj_set_style_text_font(ui_homePageLabel, &lv_font_montserrat_28, LV_PART_MAIN| LV_STATE_DEFAULT);
@@ -65,7 +65,7 @@ ui_nextTask = lv_obj_create(ui_Home_Page);
 lv_obj_set_width( ui_nextTask, 184);
 lv_obj_set_height( ui_nextTask, 50);
 lv_obj_set_x( ui_nextTask, 0 );
-lv_obj_set_y( ui_nextTask, 60 );
+lv_obj_set_y( ui_nextTask, 50 );
 lv_obj_set_align( ui_nextTask, LV_ALIGN_CENTER );
 lv_obj_clear_flag( ui_nextTask, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
 lv_obj_set_style_bg_color(ui_nextTask, lv_color_hex(0x003049), LV_PART_MAIN | LV_STATE_DEFAULT );
@@ -78,12 +78,13 @@ lv_obj_set_align( ui_nextTasklabel, LV_ALIGN_CENTER );
 lv_label_set_text(ui_nextTasklabel,"Next Task");
 lv_obj_set_style_text_color(ui_nextTasklabel, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_text_opa(ui_nextTasklabel, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_font(ui_nextTasklabel, &lv_font_montserrat_18, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 ui_currentTask = lv_obj_create(ui_Home_Page);
 lv_obj_set_width( ui_currentTask, 250);
 lv_obj_set_height( ui_currentTask, 69);
 lv_obj_set_x( ui_currentTask, 0 );
-lv_obj_set_y( ui_currentTask, -5 );
+lv_obj_set_y( ui_currentTask, -20 );
 lv_obj_set_align( ui_currentTask, LV_ALIGN_CENTER );
 lv_obj_clear_flag( ui_currentTask, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
 lv_obj_set_style_bg_color(ui_currentTask, lv_color_hex(0x003049), LV_PART_MAIN | LV_STATE_DEFAULT );
@@ -96,6 +97,7 @@ lv_obj_set_align( ui_currentTaskLable, LV_ALIGN_CENTER );
 lv_label_set_text(ui_currentTaskLable,"Current Task");
 lv_obj_set_style_text_color(ui_currentTaskLable, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_text_opa(ui_currentTaskLable, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_font(ui_currentTaskLable, &lv_font_montserrat_28, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 ui_Container1 = lv_obj_create(ui_Home_Page);
 lv_obj_remove_style_all(ui_Container1);
