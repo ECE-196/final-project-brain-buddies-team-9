@@ -67,6 +67,7 @@
 #include "screens/ui_Task_Page.c"
 #include "screens/ui_Home_Page.c"
 #include "images/ui_img_grey_cat_png.c"
+#include "images/ui_img_raconnn_png.c"
 
 #include <ui.h>
 #include "lvgl_port_v8.h"
@@ -312,14 +313,14 @@ void setup(){
     init_time = esp_timer_get_time();
 
 
-    static lv_img_dsc_t my_racon_dsc = {
-      .header.always_zero = 0;
-      .header.w
-    }
+  //   static lv_img_dsc_t my_racon_dsc = {
+  //     .header.always_zero = 0;
+  //     .header.w
+  //   }
 
-    LV_IMG_DECLARE(my_racon_dsc);
-    lv_obj_t * icon = lv_img_create(lv_scr_act(),NULL)
-    lv_img_set_src(icon, "S:racon.c");
+  //   LV_IMG_DECLARE(my_racon_dsc);
+  //   lv_obj_t * icon = lv_img_create(lv_scr_act(),NULL)
+  //   lv_img_set_src(icon, "S:racon.c");
   }
 
 void loop(){
