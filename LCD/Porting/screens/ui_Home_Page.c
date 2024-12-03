@@ -74,7 +74,6 @@ lv_obj_set_style_bg_opa(ui_nextTask, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 ui_nextTasklabel = lv_label_create(ui_nextTask);
 lv_obj_set_width( ui_nextTasklabel, LV_SIZE_CONTENT);  /// 1
 lv_obj_set_height( ui_nextTasklabel, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_align( ui_nextTasklabel, LV_ALIGN_CENTER );
 lv_label_set_text(ui_nextTasklabel,"Next Task");
 lv_obj_set_style_text_color(ui_nextTasklabel, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_text_opa(ui_nextTasklabel, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
@@ -94,7 +93,6 @@ lv_obj_set_style_text_align(ui_currentTask, LV_TEXT_ALIGN_LEFT, LV_PART_MAIN| LV
 ui_currentTaskLable = lv_label_create(ui_currentTask);
 lv_obj_set_width( ui_currentTaskLable, LV_SIZE_CONTENT);  /// 1
 lv_obj_set_height( ui_currentTaskLable, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_align( ui_currentTaskLable, LV_ALIGN_CENTER );
 lv_label_set_text(ui_currentTaskLable,"Current Task");
 lv_obj_set_style_text_color(ui_currentTaskLable, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_text_opa(ui_currentTaskLable, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
