@@ -15,10 +15,10 @@ lv_obj_set_style_bg_opa(ui_Home_Page, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 ui_homePageLabel = lv_label_create(ui_Home_Page);
 lv_obj_set_width( ui_homePageLabel, LV_SIZE_CONTENT);  /// 1
 lv_obj_set_height( ui_homePageLabel, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_homePageLabel, 2 );
-lv_obj_set_y( ui_homePageLabel, -136 );
+lv_obj_set_x( ui_homePageLabel, 0 );
+lv_obj_set_y( ui_homePageLabel, -128 );
 lv_obj_set_align( ui_homePageLabel, LV_ALIGN_CENTER );
-lv_label_set_text(ui_homePageLabel,"HOME ;)");
+lv_label_set_text(ui_homePageLabel,"HOME ");
 lv_obj_set_style_text_color(ui_homePageLabel, lv_color_hex(0x003049), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_text_opa(ui_homePageLabel, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 lv_obj_set_style_text_font(ui_homePageLabel, &lv_font_montserrat_28, LV_PART_MAIN| LV_STATE_DEFAULT);
