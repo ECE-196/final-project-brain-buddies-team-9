@@ -66,85 +66,13 @@
 #include "screens/ui_Focus_Page.c"
 #include "screens/ui_Task_Page.c"
 #include "screens/ui_Home_Page.c"
-#include "images/ui_img_grey_cat_png.c"
-#include "images/ui_img_raconnn_png.c"
+//#include "images/ui_img_grey_cat_png.c"
+//#include "images/ui_img_raconnn_png.c"
 
 #include <ui.h>
 #include "lvgl_port_v8.h"
 
-// SimpleTime Example
-#include <WiFi.h>
-#include "time.h"
-#include "esp_sntp.h"
 
-const char *ssid = "VWLife";
-const char *password = "Wolfman1!";
-
-const char *ntpServer1 = "pool.ntp.org";
-const char *ntpServer2 = "time.nist.gov";
-const long gmtOffset_sec = 3600;
-const int daylightOffset_sec = 3600;
-const char *time_zone = "PST8PDT,M3.2.0,M11.1.0";  // TimeZone rule for Europe/Rome including daylight adjustment rules (optional)
-
-char currentTimeString[9] = {};
-const int asciiOffset = 48;
-void printLocalTime() {
-  struct tm timeinfo;
-  if (!getLocalTime(&timeinfo)) {
-    Serial.println("No time available (yet)");
-    return;
-  }
-
-
-  if(9 < timeinfo.tm_hour && 13 > timeinfo.tm_hour || 21 < timeinfo.tm_hour && 24 > timeinfo.tm_hour){
-    currentTimeString[0] = '1';
-  }
-  else {
-    currentTimeString[0] = ' ';
-  }
-  if(13 > timeinfo.tm_hour){
-      currentTimeString[1] = (timeinfo.tm_hour % 10) + asciiOffset;
-  }
-  else{
-      currentTimeString[1] = ((timeinfo.tm_hour - 12) % 10) + asciiOffset;
-  }
-  currentTimeString[2] = ':';
-  currentTimeString[3] = (timeinfo.tm_min / 10) + asciiOffset;
-  currentTimeString[4] = (timeinfo.tm_min % 10) + asciiOffset;
-  currentTimeString[5] = ' ';
-  if(12 < timeinfo.tm_hour){
-    currentTimeString[6] = 'P';
-    currentTimeString[7] = 'M';
-  }
-  else{
-    currentTimeString[6] = 'A';
-    currentTimeString[7] = 'M';
-  }
-  currentTimeString[8] = '\0';
-  lv_label_set_text(ui_clock, currentTimeString);
-}// ascii: 0 = 48, 9 = 57;
-
-/*
-struct tm
-{
-  int	tm_sec;
-  int	tm_min;
-  int	tm_hour;
-  int	tm_mday;
-  int	tm_mon;
-  int	tm_year;
-  int	tm_wday;
-  int	tm_yday;
-  int	tm_isdst;
-*/
-
-// Callback function (gets called when time adjusts via NTP)
-void timeavailable(struct timeval *t) {
-  Serial.println("Got time adjustment from NTP!");
-  printLocalTime();
-  WiFi.disconnect();
-}
-// END: SimpleTime Example
 
 //Declare custom functions
 void switchScreen();
@@ -200,42 +128,6 @@ char taskList[10][10] = {"8am", "9am", "10am", "11am", "12pm", "1pm", "2pm", "3p
 int taskListLength = 10;
 int taskCounter = 9;
 
-//set up pins for buttons 
-//      UP Button
-const byte interruptUpPin = 16;
-volatile byte upPinState = LOW;
-volatile byte upState = LOW;
-
-//      DOWN Button
-const byte interruptDownPin = 15;
-volatile byte downPinState = LOW;
-volatile byte downState = LOW;
-
-//      RIGHT Button
-const byte interruptRightPin = 14;
-volatile byte rightPinState = LOW;
-volatile byte rightState = LOW;
-
-//      LEFT Button
-const byte interruptLeftPin = 17;
-volatile byte leftPinState = LOW;
-volatile byte leftState = LOW;
-
-//      TOP Button
-const byte interruptTopPin = 1;
-volatile byte topPinState = LOW;
-volatile byte topState = LOW;
-
-//      Select Button
-const byte interruptSelectPin = 2;
-volatile byte selectPinState = LOW;
-volatile byte selectState = LOW;
-
-//      Bottom Button
-const byte interruptBottomPin = 3;
-volatile byte bottomPinState = LOW;
-volatile byte bottomState = LOW;
-volatile byte containerVisible = false;
 
 // get root widget
 lv_obj_t* root_widget = lv_obj_get_parent(lv_scr_act());

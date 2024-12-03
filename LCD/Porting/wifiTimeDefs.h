@@ -1,5 +1,9 @@
 // Wifi Time Update
 
+// SimpleTime Example
+#include <WiFi.h>
+#include "time.h"
+#include "esp_sntp.h"
 
 const char *ssid = "VWLife";
 const char *password = "Wolfman1!";
