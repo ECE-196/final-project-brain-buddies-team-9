@@ -111,9 +111,15 @@ void printLocalTime() {
   currentTimeString[3] = (timeinfo.tm_min / 10) + asciiOffset;
   currentTimeString[4] = (timeinfo.tm_min % 10) + asciiOffset;
   currentTimeString[5] = ' ';
-  if(timeinfo.tm)
-  currentTimeString[6] = 
-  currentTimeString[9] = '\0';
+  if(12 < timeinfo.tm_hour){
+    currentTimeString[6] = 'P';
+    currentTimeString[7] = 'M';
+  }
+  else{
+    currentTimeString[6] = 'A';
+    currentTimeString[7] = 'M';
+  }
+  currentTimeString[8] = '\0';
   lv_label_set_text(ui_clock, currentTimeString);
 }// ascii: 0 = 48, 9 = 57;
 
@@ -135,6 +141,7 @@ struct tm
 void timeavailable(struct timeval *t) {
   Serial.println("Got time adjustment from NTP!");
   printLocalTime();
+  WiFi.disconnect();
 }
 // END: SimpleTime Example
 
@@ -244,7 +251,7 @@ void setup(){
   // #define TZ_America_Los_Angeles	PSTR("PST8PDT,M3.2.0,M11.1.0")
   configTzTime(PSTR("PST8PDT,M3.2.0,M11.1.0"), ntpServer1, ntpServer2);    
 // Simple time end    
-
+  
 
     Serial.println("Squareline porting example start");
 
@@ -303,6 +310,7 @@ void setup(){
 
     Serial.println("Squareline porting example end");
     init_time = esp_timer_get_time();
+
   }
 
 void loop(){
