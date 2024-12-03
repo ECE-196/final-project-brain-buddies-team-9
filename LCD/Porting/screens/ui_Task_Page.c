@@ -111,7 +111,7 @@ lv_label_set_text(ui_downB2,"HOME");
 ui_taskPageLabel = lv_label_create(ui_Task_Page);
 lv_obj_set_width( ui_taskPageLabel, LV_SIZE_CONTENT);  /// 1
 lv_obj_set_height( ui_taskPageLabel, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_taskPageLabel, 187 );
+lv_obj_set_x( ui_taskPageLabel, 184 );
 lv_obj_set_y( ui_taskPageLabel, 148 );
 lv_obj_set_align( ui_taskPageLabel, LV_ALIGN_CENTER );
 lv_label_set_text(ui_taskPageLabel,"TASK PAGE <3");

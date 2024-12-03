@@ -104,13 +104,15 @@ void ui_event_selectButton( lv_event_t * e);
 extern lv_obj_t *ui_selectButton;
 void ui_event_back( lv_event_t * e);
 extern lv_obj_t *ui_back;
+extern lv_obj_t *ui_racon;
 // CUSTOM VARIABLES
+extern lv_obj_t *uic_Image5;
 
 // EVENTS
 extern lv_obj_t *ui____initial_actions0;
 
-// FONTS
-LV_FONT_DECLARE( ui_font_fancy);
+// IMAGES AND IMAGE SETS
+extern const char *ui_img_racon_png;   // assets/racon.png
 
 // UI INIT
 void ui_init(void);

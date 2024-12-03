@@ -85,7 +85,9 @@ void ui_event_selectButton( lv_event_t * e);
 lv_obj_t *ui_selectButton;
 void ui_event_back( lv_event_t * e);
 lv_obj_t *ui_back;
+lv_obj_t *ui_racon;
 // CUSTOM VARIABLES
+lv_obj_t *uic_Image5;
 
 // EVENTS
 lv_obj_t *ui____initial_actions0;
