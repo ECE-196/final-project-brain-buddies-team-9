@@ -489,11 +489,11 @@ void updateTasksTextFromHome(const char* action) {
 
 // functions to inilialize tasks
 
-void updateFocusTasks(&taskStructure s){
+void updateFocusTasks(taskStructure &s){
   // uodate current task
   lv_label_set_text(ui_actualTask, s.current->name);
 }
-void updateHomeTasks(&taskStructure s){
+void updateHomeTasks(taskStructure& s){
   // updated current & next task
   lv_label_set_text(ui_currentTaskLable, s.current->name);
   lv_label_set_text(ui_nextTasklabel, s.next->name);
