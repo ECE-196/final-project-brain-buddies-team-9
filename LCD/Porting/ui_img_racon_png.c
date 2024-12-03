@@ -3,7 +3,7 @@
 // LVGL version: 8.3.6
 // Project name: SquareLine_Project
 
-#include "../ui.h"
+#include "ui.h"
 
 
 // IMAGE DATA: assets/racon.png

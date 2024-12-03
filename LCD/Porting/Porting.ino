@@ -311,6 +311,15 @@ void setup(){
     Serial.println("Squareline porting example end");
     init_time = esp_timer_get_time();
 
+
+    static lv_img_dsc_t my_racon_dsc = {
+      .header.always_zero = 0;
+      .header.w
+    }
+
+    LV_IMG_DECLARE(my_racon_dsc);
+    lv_obj_t * icon = lv_img_create(lv_scr_act(),NULL)
+    lv_img_set_src(icon, "S:racon.c");
   }
 
 void loop(){
