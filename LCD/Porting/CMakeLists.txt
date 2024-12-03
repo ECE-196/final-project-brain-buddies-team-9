@@ -8,6 +8,6 @@ SET(SOURCES components/ui_comp_container1.c
     ui.c
     components/ui_comp_hook.c
     ui_helpers.c
-    images/ui_img_racon_png.c)
+    images/ui_img_raconnn_png.c)
 
 add_library(ui ${SOURCES})
