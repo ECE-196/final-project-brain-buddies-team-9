@@ -29,13 +29,12 @@ extern "C" {
 #include "ui_theme_manager.h"
 #include "ui_themes.h"
 
-void notif_Animation( lv_obj_t *TargetObject, int delay);
-
 // SCREEN: ui_Task_Page
 void ui_Task_Page_screen_init(void);
 void ui_event_Task_Page( lv_event_t * e);
 extern lv_obj_t *ui_Task_Page;
 extern lv_obj_t *ui_topTask;
+void ui_event_curseBox( lv_event_t * e);
 extern lv_obj_t *ui_curseBox;
 extern lv_obj_t *ui_centerTask;
 extern lv_obj_t *ui_bottomTask;
@@ -47,7 +46,19 @@ extern lv_obj_t *ui_downB;
 void ui_event_homeFromTask( lv_event_t * e);
 extern lv_obj_t *ui_homeFromTask;
 extern lv_obj_t *ui_downB2;
-extern lv_obj_t *ui_Label2;
+extern lv_obj_t *ui_taskPageLabel;
+extern lv_obj_t *ui_taskInfo;
+extern lv_obj_t *ui_timeOfTask;
+extern lv_obj_t *ui_selectedTask1;
+extern lv_obj_t *ui_skippedData;
+extern lv_obj_t *ui_completedData;
+void ui_event_closeTaskInfo( lv_event_t * e);
+extern lv_obj_t *ui_closeTaskInfo;
+extern lv_obj_t *ui_Label5;
+extern lv_obj_t *ui_Panel1;
+extern lv_obj_t *ui_skipped;
+extern lv_obj_t *ui_Panel2;
+extern lv_obj_t *ui_completed;
 // CUSTOM VARIABLES
 
 // SCREEN: ui_Focus_Page

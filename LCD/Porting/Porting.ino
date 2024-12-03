@@ -66,77 +66,14 @@
 #include "screens/ui_Focus_Page.c"
 #include "screens/ui_Task_Page.c"
 #include "screens/ui_Home_Page.c"
-#include "images/ui_img_grey_cat_png.c"
+//#include "images/ui_img_grey_cat_png.c"
+//#include "images/ui_img_raconnn_png.c"
 
 #include <ui.h>
 #include "lvgl_port_v8.h"
 
-// SimpleTime Example
-#include <WiFi.h>
-#include "time.h"
-#include "esp_sntp.h"
-
-const char *ssid = "VWLife";
-const char *password = "Wolfman1!";
-
-const char *ntpServer1 = "pool.ntp.org";
-const char *ntpServer2 = "time.nist.gov";
-const long gmtOffset_sec = 3600;
-const int daylightOffset_sec = 3600;
-const char *time_zone = "PST8PDT,M3.2.0,M11.1.0";  // TimeZone rule for Europe/Rome including daylight adjustment rules (optional)
-
-char currentTimeString[9] = {};
-const int asciiOffset = 48;
-void printLocalTime() {
-  struct tm timeinfo;
-  if (!getLocalTime(&timeinfo)) {
-    Serial.println("No time available (yet)");
-    return;
-  }
-
-
-  if(9 < timeinfo.tm_hour && 13 > timeinfo.tm_hour || 21 < timeinfo.tm_hour && 24 > timeinfo.tm_hour){
-    currentTimeString[0] = '1';
-  }
-  else {
-    currentTimeString[0] = ' ';
-  }
-  if(13 > timeinfo.tm_hour){
-      currentTimeString[1] = (timeinfo.tm_hour % 10) + asciiOffset;
-  }
-  else{
-      currentTimeString[1] = ((timeinfo.tm_hour - 12) % 10) + asciiOffset;
-  }
-  currentTimeString[2] = ':';
-  currentTimeString[3] = (timeinfo.tm_min / 10) + asciiOffset;
-  currentTimeString[4] = (timeinfo.tm_min % 10) + asciiOffset;
-  currentTimeString[5] = ' ';
-  if(timeinfo.tm)
-  currentTimeString[6] = 
-  currentTimeString[9] = '\0';
-  lv_label_set_text(ui_clock, currentTimeString);
-}// ascii: 0 = 48, 9 = 57;
-
-/*
-struct tm
-{
-  int	tm_sec;
-  int	tm_min;
-  int	tm_hour;
-  int	tm_mday;
-  int	tm_mon;
-  int	tm_year;
-  int	tm_wday;
-  int	tm_yday;
-  int	tm_isdst;
-*/
-
-// Callback function (gets called when time adjusts via NTP)
-void timeavailable(struct timeval *t) {
-  Serial.println("Got time adjustment from NTP!");
-  printLocalTime();
-}
-// END: SimpleTime Example
+#include "pinDefs.h"
+#include "wifiTimeDefs.h"
 
 //Declare custom functions
 void switchScreen();
@@ -150,6 +87,10 @@ void bottomFromContainer();
 void selectfromContainer();
 void topfromContainer();
 
+void updateFocusTasks();
+void updateHomeTasks();
+void updateTaskPageTasks();
+
 // struct for task
 struct task{
   uint64_t time24hr;   //military time with miliseconds
@@ -159,23 +100,31 @@ struct task{
 	int completedAmount;
 };
 
+struct taskStructure{
+  task* current;
+  task* prev;
+  task* next;
+};
+
 uint64_t init_time; // here accessable everywhere, const since only set once.
 uint64_t currentMicros;
 uint64_t previousMicros;
+
+volatile byte containerVisible = false;
 
 uint64_t million = 1*1000*1000;
 //set up struct array
 task taskListTwo[10]= {
   {10 * million, "8:00am", "Wake up", 0, 0},
-  {20* million,"9:00am", "Eat", 0, 0},
+  {20* million,"9:00am", "Eat breakfast", 0, 0},
   {3*10* million,"10:00am", "Go to school", 0, 0},
-  {4*10* million,"11:00am", "Class", 0, 0},
-  {4*60* million,"3:00pm", "Lunch", 0, 0},
+  {4*10* million,"11:00am", "Attend classes", 0, 0},
+  {4*60* million,"3:00pm", "Eat lunch", 0, 0},
   {5*60* million,"5:00pm", "Leave school", 0, 0},
-  {6*60* million,"6:00pm", "Gym", 0, 0},
-  {7*60* million,"7:00pm", "Dinner", 0, 0},
+  {6*60* million,"6:00pm", "Go to gym", 0, 0},
+  {7*60* million,"7:00pm", "Eat dinner", 0, 0},
   {8*60* million,"8:00pm", "Shower", 0, 0},
-  {9*60* million,"10:00pm", "Sleep", 0, 0},
+  {9*60* million,"10:00pm", "Go to sleep", 0, 0},
 };
 
 int taskCounter2 = 0;
@@ -186,42 +135,6 @@ char taskList[10][10] = {"8am", "9am", "10am", "11am", "12pm", "1pm", "2pm", "3p
 int taskListLength = 10;
 int taskCounter = 9;
 
-//set up pins for buttons 
-//      UP Button
-const byte interruptUpPin = 16;
-volatile byte upPinState = LOW;
-volatile byte upState = LOW;
-
-//      DOWN Button
-const byte interruptDownPin = 15;
-volatile byte downPinState = LOW;
-volatile byte downState = LOW;
-
-//      RIGHT Button
-const byte interruptRightPin = 14;
-volatile byte rightPinState = LOW;
-volatile byte rightState = LOW;
-
-//      LEFT Button
-const byte interruptLeftPin = 17;
-volatile byte leftPinState = LOW;
-volatile byte leftState = LOW;
-
-//      TOP Button
-const byte interruptTopPin = 1;
-volatile byte topPinState = LOW;
-volatile byte topState = LOW;
-
-//      Select Button
-const byte interruptSelectPin = 2;
-volatile byte selectPinState = LOW;
-volatile byte selectState = LOW;
-
-//      Bottom Button
-const byte interruptBottomPin = 3;
-volatile byte bottomPinState = LOW;
-volatile byte bottomState = LOW;
-volatile byte containerVisible = false;
 
 // get root widget
 lv_obj_t* root_widget = lv_obj_get_parent(lv_scr_act());
@@ -244,7 +157,7 @@ void setup(){
   // #define TZ_America_Los_Angeles	PSTR("PST8PDT,M3.2.0,M11.1.0")
   configTzTime(PSTR("PST8PDT,M3.2.0,M11.1.0"), ntpServer1, ntpServer2);    
 // Simple time end    
-
+  
 
     Serial.println("Squareline porting example start");
 
@@ -303,7 +216,31 @@ void setup(){
 
     Serial.println("Squareline porting example end");
     init_time = esp_timer_get_time();
-  }
+
+
+  //   static lv_img_dsc_t my_racon_dsc = {
+  //     .header.always_zero = 0;
+  //     .header.w
+  //   }
+
+  //   LV_IMG_DECLARE(my_racon_dsc);
+  //   lv_obj_t * icon = lv_img_create(lv_scr_act(),NULL)
+  //   lv_img_set_src(icon, "S:racon.c");
+
+  // create a struc with data {current task, prev task, next task} all poitners to the task struct 
+  taskStructure S = { 
+    &taskListTwo[0],
+    &taskListTwo[1],
+    &taskListTwo[9]
+  };
+
+  // need to initialize the tasks in task page
+
+  //initialize task in home page
+  // initialize task in focus page
+
+
+}
 
 void loop(){
 
@@ -549,3 +486,21 @@ void updateTasksTextFromHome(const char* action) {
     } 
 }
 
+
+// functions to inilialize tasks
+
+void updateFocusTasks(taskStructure &s){
+  // uodate current task
+  lv_label_set_text(ui_actualTask, s.current->name);
+}
+void updateHomeTasks(taskStructure& s){
+  // updated current & next task
+  lv_label_set_text(ui_currentTaskLable, s.current->name);
+  lv_label_set_text(ui_nextTasklabel, s.next->name);
+}
+void updateTaskPageTasks(taskStructure& s){
+  // update all tasks current, prev, next
+  lv_label_set_text(ui_centerTask, s.current->name);
+  lv_label_set_text(ui_bottomTask, s.next->name);
+  lv_label_set_text(ui_topTask, s.prev->name);
+}
