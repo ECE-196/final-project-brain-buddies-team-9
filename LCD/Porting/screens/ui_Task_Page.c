@@ -127,7 +127,7 @@ lv_obj_set_x( ui_notification, 1 );
 lv_obj_set_y( ui_notification, 1 );
 lv_obj_set_align( ui_notification, LV_ALIGN_CENTER );
 lv_obj_add_state( ui_notification, LV_STATE_DISABLED );     /// States
-lv_obj_add_flag( ui_notification, LV_OBJ_FLAG_HIDDEN | LV_OBJ_FLAG_CHECKABLE | LV_OBJ_FLAG_EVENT_BUBBLE );   /// Flags
+lv_obj_add_flag( ui_notification, LV_OBJ_FLAG_CHECKABLE | LV_OBJ_FLAG_EVENT_BUBBLE );   /// Flags
 lv_obj_clear_flag( ui_notification, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
 lv_obj_set_style_bg_color(ui_notification, lv_color_hex(0x003049), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_bg_opa(ui_notification, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
@@ -176,7 +176,7 @@ lv_obj_set_align( ui_skip1, LV_ALIGN_CENTER );
 lv_label_set_text(ui_skip1,"Skip");
 lv_obj_set_style_text_color(ui_skip1, lv_color_hex(0x003049), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_text_opa(ui_skip1, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_text_font(ui_skip1, &lv_font_montserrat_12, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_font(ui_skip1, &lv_font_montserrat_14, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 ui_bottomButton1 = lv_btn_create(ui_notification);
 lv_obj_set_width( ui_bottomButton1, 65);
@@ -194,7 +194,7 @@ lv_obj_set_align( ui_done1, LV_ALIGN_CENTER );
 lv_label_set_text(ui_done1,"Done");
 lv_obj_set_style_text_color(ui_done1, lv_color_hex(0x003049), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_text_opa(ui_done1, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_text_font(ui_done1, &lv_font_montserrat_12, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_font(ui_done1, &lv_font_montserrat_14, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 ui_selectButton1 = lv_btn_create(ui_notification);
 lv_obj_set_width( ui_selectButton1, 65);
@@ -212,7 +212,7 @@ lv_obj_set_align( ui_back1, LV_ALIGN_CENTER );
 lv_label_set_text(ui_back1,"Back");
 lv_obj_set_style_text_color(ui_back1, lv_color_hex(0x003049), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_text_opa(ui_back1, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_text_font(ui_back1, &lv_font_montserrat_12, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_font(ui_back1, &lv_font_montserrat_14, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 lv_obj_add_event_cb(ui_curseBox, ui_event_curseBox, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_UpButton, ui_event_UpButton, LV_EVENT_ALL, NULL);
