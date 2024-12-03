@@ -194,15 +194,6 @@ lv_obj_set_style_text_color(ui_back, lv_color_hex(0x003049), LV_PART_MAIN | LV_S
 lv_obj_set_style_text_opa(ui_back, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 lv_obj_set_style_text_font(ui_back, &lv_font_montserrat_14, LV_PART_MAIN| LV_STATE_DEFAULT);
 
-ui_Image2 = lv_img_create(ui_Home_Page);
-lv_obj_set_width( ui_Image2, LV_SIZE_CONTENT);  /// 1
-lv_obj_set_height( ui_Image2, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_Image2, 167 );
-lv_obj_set_y( ui_Image2, 89 );
-lv_obj_set_align( ui_Image2, LV_ALIGN_CENTER );
-lv_obj_add_flag( ui_Image2, LV_OBJ_FLAG_ADV_HITTEST );   /// Flags
-lv_obj_clear_flag( ui_Image2, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
-
 lv_obj_add_event_cb(ui_taskFromHome, ui_event_taskFromHome, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_focusFromHome, ui_event_focusFromHome, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_currentTask, ui_event_currentTask, LV_EVENT_ALL, NULL);

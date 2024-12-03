@@ -498,7 +498,7 @@ void updateHomeTasks(taskStructure& s){
   lv_label_set_text(ui_currentTaskLable, s.current->name);
   lv_label_set_text(ui_nextTasklabel, s.next->name);
 }
-void updateTaskPageTasks(&taskStructure s){
+void updateTaskPageTasks(taskStructure& s){
   // update all tasks current, prev, next
   lv_label_set_text(ui_centerTask, s.current->name);
   lv_label_set_text(ui_bottomTask, s.next->name);
