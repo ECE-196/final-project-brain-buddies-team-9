@@ -175,15 +175,15 @@ uint64_t million = 1*1000*1000;
 //set up struct array
 task taskListTwo[10]= {
   {10 * million, "8:00am", "Wake up", 0, 0},
-  {20* million,"9:00am", "Eat", 0, 0},
+  {20* million,"9:00am", "Eat breakfast", 0, 0},
   {3*10* million,"10:00am", "Go to school", 0, 0},
-  {4*10* million,"11:00am", "Class", 0, 0},
-  {4*60* million,"3:00pm", "Lunch", 0, 0},
+  {4*10* million,"11:00am", "Attend classes", 0, 0},
+  {4*60* million,"3:00pm", "Eat lunch", 0, 0},
   {5*60* million,"5:00pm", "Leave school", 0, 0},
-  {6*60* million,"6:00pm", "Gym", 0, 0},
-  {7*60* million,"7:00pm", "Dinner", 0, 0},
+  {6*60* million,"6:00pm", "Go to gym", 0, 0},
+  {7*60* million,"7:00pm", "Eat dinner", 0, 0},
   {8*60* million,"8:00pm", "Shower", 0, 0},
-  {9*60* million,"10:00pm", "Sleep", 0, 0},
+  {9*60* million,"10:00pm", "Go to sleep", 0, 0},
 };
 
 int taskCounter2 = 0;

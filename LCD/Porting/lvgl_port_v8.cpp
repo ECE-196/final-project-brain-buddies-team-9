@@ -835,7 +835,7 @@ bool lvgl_port_deinit(void)
     }
 #endif
     if (lvgl_mux != nullptr) {
-        vSemaphoreDelete(lvgl_mux);
+        vSemaphoreDelete(lvgl_mux); 
         lvgl_mux = nullptr;
     }
 
