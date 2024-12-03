@@ -229,9 +229,9 @@ void setup(){
 
   // create a struc with data {current task, prev task, next task} all poitners to the task struct 
   taskStructure S = { 
-    taskListTwo[0],
-    taskListTwo[1],
-    taskListTwo[9]
+    &taskListTwo[0],
+    &taskListTwo[1],
+    &taskListTwo[9]
   };
 
   // need to initialize the tasks in task page
@@ -498,7 +498,7 @@ void updateHomeTasks(taskStructure& s){
   lv_label_set_text(ui_currentTaskLable, s.current->name);
   lv_label_set_text(ui_nextTasklabel, s.next->name);
 }
-void updateTaskPageTasks(&taskStructure s){
+void updateTaskPageTasks(taskStructure& s){
   // update all tasks current, prev, next
   lv_label_set_text(ui_centerTask, s.current->name);
   lv_label_set_text(ui_bottomTask, s.next->name);
