@@ -33,11 +33,12 @@ extern "C" {
 void ui_Task_Page_screen_init(void);
 void ui_event_Task_Page( lv_event_t * e);
 extern lv_obj_t *ui_Task_Page;
+extern lv_obj_t *ui_Panel3;
 extern lv_obj_t *ui_topTask;
+extern lv_obj_t *ui_bottomTask;
 void ui_event_curseBox( lv_event_t * e);
 extern lv_obj_t *ui_curseBox;
 extern lv_obj_t *ui_centerTask;
-extern lv_obj_t *ui_bottomTask;
 void ui_event_UpButton( lv_event_t * e);
 extern lv_obj_t *ui_UpButton;
 extern lv_obj_t *ui_UPButton;

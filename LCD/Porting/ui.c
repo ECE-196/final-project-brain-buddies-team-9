@@ -13,11 +13,12 @@
 void ui_Task_Page_screen_init(void);
 void ui_event_Task_Page( lv_event_t * e);
 lv_obj_t *ui_Task_Page;
+lv_obj_t *ui_Panel3;
 lv_obj_t *ui_topTask;
+lv_obj_t *ui_bottomTask;
 void ui_event_curseBox( lv_event_t * e);
 lv_obj_t *ui_curseBox;
 lv_obj_t *ui_centerTask;
-lv_obj_t *ui_bottomTask;
 void ui_event_UpButton( lv_event_t * e);
 lv_obj_t *ui_UpButton;
 lv_obj_t *ui_UPButton;

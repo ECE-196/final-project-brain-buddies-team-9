@@ -12,44 +12,57 @@ lv_obj_clear_flag( ui_Task_Page, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
 lv_obj_set_style_bg_color(ui_Task_Page, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_bg_opa(ui_Task_Page, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 
-ui_topTask = lv_label_create(ui_Task_Page);
+ui_Panel3 = lv_obj_create(ui_Task_Page);
+lv_obj_set_width( ui_Panel3, 355);
+lv_obj_set_height( ui_Panel3, 150);
+lv_obj_set_x( ui_Panel3, 40 );
+lv_obj_set_y( ui_Panel3, 0 );
+lv_obj_set_align( ui_Panel3, LV_ALIGN_CENTER );
+lv_obj_clear_flag( ui_Panel3, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
+lv_obj_set_style_border_color(ui_Panel3, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_border_opa(ui_Panel3, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_outline_color(ui_Panel3, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_outline_opa(ui_Panel3, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+
+ui_topTask = lv_label_create(ui_Panel3);
 lv_obj_set_width( ui_topTask, LV_SIZE_CONTENT);  /// 1
 lv_obj_set_height( ui_topTask, LV_SIZE_CONTENT);   /// 1
 lv_obj_set_x( ui_topTask, 0 );
-lv_obj_set_y( ui_topTask, -55 );
-lv_obj_set_align( ui_topTask, LV_ALIGN_CENTER );
+lv_obj_set_y( ui_topTask, -5 );
 lv_label_set_text(ui_topTask,"topTask");
 lv_obj_set_style_text_color(ui_topTask, lv_color_hex(0x003049), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_text_opa(ui_topTask, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 lv_obj_set_style_text_font(ui_topTask, &lv_font_montserrat_18, LV_PART_MAIN| LV_STATE_DEFAULT);
 
+ui_bottomTask = lv_label_create(ui_Panel3);
+lv_obj_set_width( ui_bottomTask, LV_SIZE_CONTENT);  /// 1
+lv_obj_set_height( ui_bottomTask, LV_SIZE_CONTENT);   /// 1
+lv_obj_set_x( ui_bottomTask, 0 );
+lv_obj_set_y( ui_bottomTask, 5 );
+lv_obj_set_align( ui_bottomTask, LV_ALIGN_BOTTOM_LEFT );
+lv_label_set_text(ui_bottomTask,"bottomTask");
+lv_obj_set_style_text_color(ui_bottomTask, lv_color_hex(0x003049), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_text_opa(ui_bottomTask, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_font(ui_bottomTask, &lv_font_montserrat_18, LV_PART_MAIN| LV_STATE_DEFAULT);
+
 ui_curseBox = lv_obj_create(ui_Task_Page);
-lv_obj_set_width( ui_curseBox, 250);
+lv_obj_set_width( ui_curseBox, 355);
 lv_obj_set_height( ui_curseBox, 69);
+lv_obj_set_x( ui_curseBox, 40 );
+lv_obj_set_y( ui_curseBox, -2 );
 lv_obj_set_align( ui_curseBox, LV_ALIGN_CENTER );
 lv_obj_clear_flag( ui_curseBox, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
 lv_obj_set_style_bg_color(ui_curseBox, lv_color_hex(0x003049), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_bg_opa(ui_curseBox, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 
-ui_centerTask = lv_label_create(ui_Task_Page);
+ui_centerTask = lv_label_create(ui_curseBox);
 lv_obj_set_width( ui_centerTask, LV_SIZE_CONTENT);  /// 1
 lv_obj_set_height( ui_centerTask, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_align( ui_centerTask, LV_ALIGN_CENTER );
+lv_obj_set_align( ui_centerTask, LV_ALIGN_LEFT_MID );
 lv_label_set_text(ui_centerTask,"centerTask");
 lv_obj_set_style_text_color(ui_centerTask, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_text_opa(ui_centerTask, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 lv_obj_set_style_text_font(ui_centerTask, &lv_font_montserrat_28, LV_PART_MAIN| LV_STATE_DEFAULT);
-
-ui_bottomTask = lv_label_create(ui_Task_Page);
-lv_obj_set_width( ui_bottomTask, LV_SIZE_CONTENT);  /// 1
-lv_obj_set_height( ui_bottomTask, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_bottomTask, 0 );
-lv_obj_set_y( ui_bottomTask, 55 );
-lv_obj_set_align( ui_bottomTask, LV_ALIGN_CENTER );
-lv_label_set_text(ui_bottomTask,"bottomTask");
-lv_obj_set_style_text_color(ui_bottomTask, lv_color_hex(0x003049), LV_PART_MAIN | LV_STATE_DEFAULT );
-lv_obj_set_style_text_opa(ui_bottomTask, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_text_font(ui_bottomTask, &lv_font_montserrat_18, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 ui_UpButton = lv_btn_create(ui_Task_Page);
 lv_obj_set_width( ui_UpButton, 65);
