@@ -1,5 +1,5 @@
 // Pin Definition Header
-//set up pins for buttons 
+//set up pins for buttons
 //      UP Button
 const byte interruptUpPin = 16;
 volatile byte upPinState = LOW;
@@ -26,7 +26,7 @@ volatile byte topPinState = LOW;
 volatile byte topState = LOW;
 
 //      Select Button
-const byte = 2;
+const byte interruptSelectPin = 2;
 volatile byte selectPinState = LOW;
 volatile byte selectState = LOW;
 
