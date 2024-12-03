@@ -32,9 +32,14 @@ lv_obj_t *ui_taskInfo;
 lv_obj_t *ui_timeOfTask;
 lv_obj_t *ui_selectedTask1;
 lv_obj_t *ui_skippedData;
-lv_obj_t *ui_skipped;
-lv_obj_t *ui_completed;
 lv_obj_t *ui_completedData;
+void ui_event_closeTaskInfo( lv_event_t * e);
+lv_obj_t *ui_closeTaskInfo;
+lv_obj_t *ui_Label5;
+lv_obj_t *ui_Panel1;
+lv_obj_t *ui_skipped;
+lv_obj_t *ui_Panel2;
+lv_obj_t *ui_completed;
 // CUSTOM VARIABLES
 
 
@@ -153,6 +158,14 @@ void ui_event_homeFromTask( lv_event_t * e) {
 
 if ( event_code == LV_EVENT_CLICKED) {
       _ui_screen_change( &ui_Home_Page, LV_SCR_LOAD_ANIM_NONE, 500, 0, &ui_Home_Page_screen_init);
+}
+}
+
+void ui_event_closeTaskInfo( lv_event_t * e) {
+    lv_event_code_t event_code = lv_event_get_code(e);
+
+if ( event_code == LV_EVENT_CLICKED) {
+      _ui_flag_modify( ui_taskInfo, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
 }
 }
 

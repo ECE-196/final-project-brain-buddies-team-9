@@ -53,9 +53,14 @@ extern lv_obj_t *ui_taskInfo;
 extern lv_obj_t *ui_timeOfTask;
 extern lv_obj_t *ui_selectedTask1;
 extern lv_obj_t *ui_skippedData;
-extern lv_obj_t *ui_skipped;
-extern lv_obj_t *ui_completed;
 extern lv_obj_t *ui_completedData;
+void ui_event_closeTaskInfo( lv_event_t * e);
+extern lv_obj_t *ui_closeTaskInfo;
+extern lv_obj_t *ui_Label5;
+extern lv_obj_t *ui_Panel1;
+extern lv_obj_t *ui_skipped;
+extern lv_obj_t *ui_Panel2;
+extern lv_obj_t *ui_completed;
 // CUSTOM VARIABLES
 
 // SCREEN: ui_Focus_Page
