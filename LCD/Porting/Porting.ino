@@ -229,9 +229,9 @@ void setup(){
 
   // create a struc with data {current task, prev task, next task} all poitners to the task struct 
   taskStructure S = { 
-    taskListTwo[0],
-    taskListTwo[1],
-    taskListTwo[9]
+    &taskListTwo[0],
+    &taskListTwo[1],
+    &taskListTwo[9]
   };
 
   // need to initialize the tasks in task page
