@@ -51,11 +51,14 @@ void changeUpState();
 void changeDownState();
 void changeRightState();
 void changeLeftState();
+void allButtonLow();
 
 void updateTasksTextFromHome();
 void bottomFromContainer(taskStructure& s);
 void selectfromContainer(taskStructure& s);
 void topfromContainer(taskStructure& s);
+
+void initializeTaskStructure(taskStructure& s);
 
 void updateFocusTasks(taskStructure& s);
 void updateHomeTasks(taskStructure& s);
@@ -63,6 +66,9 @@ void updateTaskPageTasks(taskStructure& s);
 
 void prevTask(taskStructure& s);
 void nextTask(taskStructure& s);
+
+void updateTaskInPopUp(taskStructure& s);
+void updateTimeInPopUp(taskStructure& s);
 
 enum action { SKIP, DONE, BACK };
 
@@ -176,13 +182,18 @@ void setup(){
   init_time = esp_timer_get_time();
 
 
+  initializeTaskStructure(S);
+  // // need to initialize the tasks in task page
+  // updateTaskPageTasks(S);
+  // //initialize task in home page
+  // updateHomeTasks(S);
+  // // initialize task in focus page
+  // updateFocusTasks(S);
 
-  // need to initialize the tasks in task page
-  updateTaskPageTasks(S);
-  //initialize task in home page
-  updateHomeTasks(S);
-  // initialize task in focus page
-  updateFocusTasks(S);
+  // update popUp
+  updateTimeInPopUp(S);
+  updateTaskInPopUp(S);
+
   // delay(2000);
   // Serial.print("Size of Task: "); Serial.println((long)taskIncrement);
   // Serial.print("Begin Address: "); Serial.println((long)taskListBegin);
@@ -190,6 +201,8 @@ void setup(){
   // for(int i = 0; i < taskListLength; i++){
   //   Serial.print("Address "); Serial.println(i); Serial.println((long)&taskListTwo[i]);
   // }
+  Serial.println("end setup");
+  delay (2000);
 }
 
 void loop(){
@@ -205,27 +218,33 @@ void loop(){
   //      setup for UP Button
   upPinState = digitalRead(interruptUpPin);
   if(HIGH == upState && LOW == upPinState){
+    allButtonLow();
     upFromTask(S_taskPage);
-    upState = LOW;
+    //upState = LOW;
+    //allButtonLow();
   }
   
   //     setup for Down Button
   downPinState = digitalRead(interruptDownPin);
   if(HIGH == downState && LOW == downPinState){
+    allButtonLow();
     downFromTask(S_taskPage);
-    downState = LOW;
+    //downState = LOW;
+    //allButtonLow();
   }
 
   //     setup for Right Button
   rightPinState = digitalRead(interruptRightPin);
   if(HIGH == rightState && LOW == rightPinState){
+    allButtonLow();
     if(current_screen == ui_Home_Page){
       taskFromHome();
     }
     if(current_screen == ui_Focus_Page){
       homeFromFocus();
     }
-    rightState = LOW;
+    //rightState = LOW;
+    //allButtonLow();
   }
 
   //      set up for LEFT Button
@@ -237,7 +256,8 @@ void loop(){
     if(current_screen == ui_Task_Page){
       homeFromTask();
     }
-    leftState = LOW;
+    //leftState = LOW;
+    allButtonLow();
   }
 
   //      set up for SELECT Button when in HOMEPAGE
@@ -248,26 +268,36 @@ void loop(){
   bottomPinState = digitalRead(interruptBottomPin);
 
   if(HIGH == selectState && LOW == selectPinState && current_screen == ui_Home_Page && containerVisible == false){
+    allButtonLow();
     Serial.println("selectFromHome");
     selectFromHome();
-    selectState = LOW;
-    bottomState = LOW;
-    topState = LOW;
+   // allButtonLow();
+    // create a function that when called it sets all states to low. 
   }
   if(HIGH == bottomState && LOW == bottomPinState && current_screen == ui_Home_Page && containerVisible == true){
+    allButtonLow();
     Serial.println("bottomFromContainer");
     selectfromContainer(S);
-    bottomState = LOW;
+    // selectState = LOW;
+    // bottomState = LOW;
+    // topState = LOW;
+    //allButtonLow();
   }
   else if(HIGH == selectState && LOW == selectPinState && current_screen == ui_Home_Page && containerVisible == true){
     Serial.println("selectFromContainer");
-    bottomFromContainer();    
-    selectState = LOW;
+    bottomFromContainer(); 
+    // selectState = LOW;
+    // bottomState = LOW;
+    // topState = LOW;
+    allButtonLow();
   }
   else if(HIGH == topState && LOW == topPinState && current_screen == ui_Home_Page && containerVisible == true){
     Serial.println("topFromContainer");
     topfromContainer(S);
-    topState = LOW;
+    // selectState = LOW;
+    // bottomState = LOW;
+    // topState = LOW;
+    allButtonLow();
   }
 
 
@@ -276,7 +306,13 @@ void loop(){
 	//	do the popup/notif
   //time24hr
 
-  if(S.current->time24hr + init_time < currentMicros){
+  // for this need to , if  time of the next task is less than  current 24 hr, then we need to 
+  // shift tasks up 
+  // use next task and call updatehometasks
+  //uodate curr and do pop up(text)
+
+  if(S.next->time24hr < current24hrTime){
+    Serial.println("next24hour in statement activated");
     lv_obj_clear_flag(ui_Container1, LV_OBJ_FLAG_HIDDEN);
     containerVisible = true;
   }
@@ -293,6 +329,17 @@ LV_OBJ_FLAG_HIDDEN Make the object hidden. (Like it wasn't there at all)
 
 
  //////////////////////  SET UP STATES OF BUTTONS //////////////////////
+
+// set all button states to low
+void allButtonLow(){
+  upState = LOW;
+  downState = LOW;
+  rightState = LOW;
+  leftState = LOW;
+  topState = LOW;
+  selectState = LOW;
+  bottomState = LOW;
+}
 //  Dpad 
 //  update UP button
 void changeUpState(){upState = HIGH;}
@@ -390,12 +437,18 @@ void bottomFromContainer(){
 void selectfromContainer(taskStructure& s){
   lv_event_send(ui_selectButton, LV_EVENT_CLICKED, NULL);
   updateTasksTextFromHome(DONE, s);
+   // update popUp
+  updateTimeInPopUp(s);
+  updateTaskInPopUp(s);  
   containerVisible = false;
 }
 
 void topfromContainer(taskStructure& s){
   lv_event_send(ui_topButton, LV_EVENT_CLICKED, NULL);
   updateTasksTextFromHome(SKIP, s);
+   // update popUp
+  updateTimeInPopUp(s);
+  updateTaskInPopUp(s);  
   containerVisible = false;
 }
 
@@ -432,19 +485,41 @@ void updateTasksTextFromHome(action anAction, taskStructure& s) {
 // GOATED LVGL CREATOR: lv_label_set_text_fmt(label, "Value: %d", 15) for printf formating
 // functions to inilialize tasks
 void updateFocusTasks(taskStructure& s){
+  Serial.println("Update Focus task");
   // uodate current task
   lv_label_set_text_fmt(ui_actualTask, "%s %s", s.current->time, s.current->name);
 }
 void updateHomeTasks(taskStructure& s){
+  Serial.println("Update home task");
   // updated current & next task
   lv_label_set_text_fmt(ui_currentTaskLable, "%s %s", s.current->time, s.current->name);
   lv_label_set_text_fmt(ui_nextTasklabel, "%s %s", s.next->time, s.next->name);
 }
 void updateTaskPageTasks(taskStructure& s){
+  Serial.println("Update task page task");
   // update all tasks current, prev, next
   lv_label_set_text_fmt(ui_centerTask, "%s %s", s.current->time, s.current->name);
   lv_label_set_text_fmt(ui_bottomTask, "%s %s", s.next->time, s.next->name);
   lv_label_set_text_fmt(ui_topTask, "%s %s", s.prev->time, s.prev->name);
+}
+
+//////// Functions to inilialize taks in POPUP ///////
+void updateTaskInPopUp(taskStructure& s){
+  lv_label_set_text_fmt(ui_selectedTask, "%s", s.current->name);
+}
+void updateTimeInPopUp(taskStructure& s){
+  lv_label_set_text_fmt(ui_time, "%s", s.current->time);
+}
+
+// initialize the taskStructure so that the current task matches the time.
+void initializeTaskStructure(taskStructure &s){
+  Serial.println("Initialoze task struct");
+  while(s.next->time24hr < current24hrTime){
+    nextTask(s);
+  }
+  updateFocusTasks(s);
+  updateHomeTasks(s);
+  updateTaskPageTasks(s);
 }
 
 // Iterates the prev,current,and next tasks in a task structure to the next task
