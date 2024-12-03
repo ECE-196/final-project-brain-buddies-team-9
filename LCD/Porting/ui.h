@@ -108,9 +108,6 @@ extern lv_obj_t *ui_Image2;
 // EVENTS
 extern lv_obj_t *ui____initial_actions0;
 
-// IMAGES AND IMAGE SETS
-extern const char *ui_img_raconnn_png;   // assets/raconnn.png
-
 // UI INIT
 void ui_init(void);
 

@@ -195,7 +195,6 @@ lv_obj_set_style_text_opa(ui_back, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 lv_obj_set_style_text_font(ui_back, &lv_font_montserrat_14, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 ui_Image2 = lv_img_create(ui_Home_Page);
-lv_img_set_src(ui_Image2, ui_img_raconnn_png);
 lv_obj_set_width( ui_Image2, LV_SIZE_CONTENT);  /// 1
 lv_obj_set_height( ui_Image2, LV_SIZE_CONTENT);   /// 1
 lv_obj_set_x( ui_Image2, 167 );
