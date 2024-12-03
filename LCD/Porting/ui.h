@@ -29,8 +29,6 @@ extern "C" {
 #include "ui_theme_manager.h"
 #include "ui_themes.h"
 
-void notif_Animation( lv_obj_t *TargetObject, int delay);
-
 // SCREEN: ui_Task_Page
 void ui_Task_Page_screen_init(void);
 void ui_event_Task_Page( lv_event_t * e);
@@ -104,15 +102,14 @@ void ui_event_selectButton( lv_event_t * e);
 extern lv_obj_t *ui_selectButton;
 void ui_event_back( lv_event_t * e);
 extern lv_obj_t *ui_back;
-extern lv_obj_t *ui_racon;
+extern lv_obj_t *ui_Image2;
 // CUSTOM VARIABLES
-extern lv_obj_t *uic_racon;
 
 // EVENTS
 extern lv_obj_t *ui____initial_actions0;
 
 // IMAGES AND IMAGE SETS
-extern const char *ui_img_racon_png;   // assets/racon.png
+extern const char *ui_img_raconnn_png;   // assets/raconnn.png
 
 // UI INIT
 void ui_init(void);
