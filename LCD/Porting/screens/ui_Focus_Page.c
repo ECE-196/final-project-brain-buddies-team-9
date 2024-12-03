@@ -66,6 +66,26 @@ lv_label_set_text(ui_homeButtonFromFocus,"HOME");
 lv_obj_set_style_text_color(ui_homeButtonFromFocus, lv_color_hex(0x003049), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_text_opa(ui_homeButtonFromFocus, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 
+ui_decor3 = lv_label_create(ui_Focus_Page);
+lv_obj_set_width( ui_decor3, LV_SIZE_CONTENT);  /// 1
+lv_obj_set_height( ui_decor3, LV_SIZE_CONTENT);   /// 1
+lv_obj_set_x( ui_decor3, 225 );
+lv_obj_set_y( ui_decor3, -144 );
+lv_obj_set_align( ui_decor3, LV_ALIGN_CENTER );
+lv_label_set_text(ui_decor3,":)");
+lv_obj_set_style_text_color(ui_decor3, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_text_opa(ui_decor3, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+
+ui_decor4 = lv_label_create(ui_Focus_Page);
+lv_obj_set_width( ui_decor4, LV_SIZE_CONTENT);  /// 1
+lv_obj_set_height( ui_decor4, LV_SIZE_CONTENT);   /// 1
+lv_obj_set_x( ui_decor4, 188 );
+lv_obj_set_y( ui_decor4, -144 );
+lv_obj_set_align( ui_decor4, LV_ALIGN_CENTER );
+lv_label_set_text(ui_decor4,"lock in");
+lv_obj_set_style_text_color(ui_decor4, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_text_opa(ui_decor4, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+
 lv_obj_add_event_cb(ui_homeFromFocus, ui_event_homeFromFocus, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_Focus_Page, ui_event_Focus_Page, LV_EVENT_ALL, NULL);
 

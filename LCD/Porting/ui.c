@@ -53,6 +53,8 @@ lv_obj_t *ui_actualTask;
 void ui_event_homeFromFocus( lv_event_t * e);
 lv_obj_t *ui_homeFromFocus;
 lv_obj_t *ui_homeButtonFromFocus;
+lv_obj_t *ui_decor3;
+lv_obj_t *ui_decor4;
 // CUSTOM VARIABLES
 
 
@@ -85,6 +87,8 @@ void ui_event_selectButton( lv_event_t * e);
 lv_obj_t *ui_selectButton;
 void ui_event_back( lv_event_t * e);
 lv_obj_t *ui_back;
+lv_obj_t *ui_decor1;
+lv_obj_t *ui_decor2;
 // CUSTOM VARIABLES
 
 // EVENTS
