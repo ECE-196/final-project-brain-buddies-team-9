@@ -292,7 +292,7 @@ LV_OBJ_FLAG_HIDDEN Make the object hidden. (Like it wasn't there at all)
 }
 
 
-                //      SET UP STATES OF BUTTONS
+ //////////////////////  SET UP STATES OF BUTTONS //////////////////////
 //  Dpad 
 //  update UP button
 void changeUpState(){upState = HIGH;}
