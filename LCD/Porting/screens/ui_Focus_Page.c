@@ -9,7 +9,7 @@ void ui_Focus_Page_screen_init(void)
 {
 ui_Focus_Page = lv_obj_create(NULL);
 lv_obj_clear_flag( ui_Focus_Page, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
-lv_obj_set_style_bg_color(ui_Focus_Page, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_bg_color(ui_Focus_Page, lv_color_hex(0x003049), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_bg_opa(ui_Focus_Page, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 ui_clock = lv_label_create(ui_Focus_Page);
@@ -19,7 +19,7 @@ lv_obj_set_x( ui_clock, 0 );
 lv_obj_set_y( ui_clock, 20 );
 lv_obj_set_align( ui_clock, LV_ALIGN_CENTER );
 lv_label_set_text(ui_clock,"12:36 PM");
-lv_obj_set_style_text_color(ui_clock, lv_color_hex(0x003049), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_text_color(ui_clock, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_text_opa(ui_clock, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 lv_obj_set_style_text_font(ui_clock, &lv_font_montserrat_28, LV_PART_MAIN| LV_STATE_DEFAULT);
 
@@ -30,7 +30,7 @@ lv_obj_set_x( ui_focusPageLabel, -180 );
 lv_obj_set_y( ui_focusPageLabel, 150 );
 lv_obj_set_align( ui_focusPageLabel, LV_ALIGN_CENTER );
 lv_label_set_text(ui_focusPageLabel,"FOCUS PAGE <3");
-lv_obj_set_style_text_color(ui_focusPageLabel, lv_color_hex(0x003049), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_text_color(ui_focusPageLabel, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_text_opa(ui_focusPageLabel, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 lv_obj_set_style_text_font(ui_focusPageLabel, &lv_font_montserrat_14, LV_PART_MAIN| LV_STATE_DEFAULT);
 
@@ -41,7 +41,7 @@ lv_obj_set_x( ui_actualTask, 0 );
 lv_obj_set_y( ui_actualTask, -20 );
 lv_obj_set_align( ui_actualTask, LV_ALIGN_CENTER );
 lv_label_set_text(ui_actualTask,"Actual Task");
-lv_obj_set_style_text_color(ui_actualTask, lv_color_hex(0x003049), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_text_color(ui_actualTask, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_text_opa(ui_actualTask, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 lv_obj_set_style_text_font(ui_actualTask, &lv_font_montserrat_38, LV_PART_MAIN| LV_STATE_DEFAULT);
 
@@ -51,7 +51,7 @@ lv_obj_set_height( ui_homeFromFocus, 20);
 lv_obj_set_x( ui_homeFromFocus, 203 );
 lv_obj_set_y( ui_homeFromFocus, 0 );
 lv_obj_set_align( ui_homeFromFocus, LV_ALIGN_CENTER );
-lv_obj_set_style_bg_color(ui_homeFromFocus, lv_color_hex(0x003049), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_bg_color(ui_homeFromFocus, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_bg_opa(ui_homeFromFocus, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 lv_obj_set_style_text_color(ui_homeFromFocus, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_text_opa(ui_homeFromFocus, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
@@ -63,6 +63,8 @@ lv_obj_set_x( ui_homeButtonFromFocus, -1 );
 lv_obj_set_y( ui_homeButtonFromFocus, 0 );
 lv_obj_set_align( ui_homeButtonFromFocus, LV_ALIGN_CENTER );
 lv_label_set_text(ui_homeButtonFromFocus,"HOME");
+lv_obj_set_style_text_color(ui_homeButtonFromFocus, lv_color_hex(0x003049), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_text_opa(ui_homeButtonFromFocus, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 lv_obj_add_event_cb(ui_homeFromFocus, ui_event_homeFromFocus, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_Focus_Page, ui_event_Focus_Page, LV_EVENT_ALL, NULL);
