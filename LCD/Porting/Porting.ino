@@ -158,6 +158,10 @@ void bottomFromContainer();
 void selectfromContainer();
 void topfromContainer();
 
+void updateFocusTasks();
+void updateHomeTasks();
+void updateTaskPageTasks();
+
 // struct for task
 struct task{
   uint64_t time24hr;   //military time with miliseconds
@@ -590,20 +594,20 @@ void updateTasksTextFromHome(const char* action) {
 
 // functions to inilialize tasks
 
-void updateFocusTasks(taskStructure s){
+void updateFocusTasks(&taskStructure s){
   // uodate current task
-  lv_label_set_text(ui_actualTask, s.current);
+  lv_label_set_text(ui_actualTask, s.current->name);
 }
-void updateHomeTasks(taskStructure s){
+void updateHomeTasks(&taskStructure s){
   // updated current & next task
-  lv_label_set_text(ui_currentTaskLable, s.current);
-  lv_label_set_text(ui_nextTasklabel, s.next);
+  lv_label_set_text(ui_currentTaskLable, s.current)->name;
+  lv_label_set_text(ui_nextTasklabel, s.next->name);
 }
-void updateTaskPageTasks(taskStructure s){
+void updateTaskPageTasks(&taskStructure s){
   // update all tasks current, prev, next
-  lv_label_set_text(ui_centerTask, s.current);
-  lv_label_set_text(ui_bottomTask, s.next);
-  lv_label_set_text(ui_topTask, s.prev);
+  lv_label_set_text(ui_centerTask, s.current->name);
+  lv_label_set_text(ui_bottomTask, s.next->name);
+  lv_label_set_text(ui_topTask, s.prev->name);
 }
 
 
