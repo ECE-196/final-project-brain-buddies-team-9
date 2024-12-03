@@ -110,6 +110,8 @@ uint64_t init_time; // here accessable everywhere, const since only set once.
 uint64_t currentMicros;
 uint64_t previousMicros;
 
+volatile byte containerVisible = false;
+
 uint64_t million = 1*1000*1000;
 //set up struct array
 task taskListTwo[10]= {
