@@ -72,7 +72,8 @@
 #include <ui.h>
 #include "lvgl_port_v8.h"
 
-
+#include "pinDefs.h"
+#include "wifiTimeDefs.h"
 
 //Declare custom functions
 void switchScreen();
