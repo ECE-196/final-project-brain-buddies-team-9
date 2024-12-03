@@ -107,7 +107,7 @@ lv_obj_set_x( ui_Container1, 1 );
 lv_obj_set_y( ui_Container1, 1 );
 lv_obj_set_align( ui_Container1, LV_ALIGN_CENTER );
 lv_obj_add_state( ui_Container1, LV_STATE_DISABLED );     /// States
-lv_obj_add_flag( ui_Container1, LV_OBJ_FLAG_CHECKABLE | LV_OBJ_FLAG_EVENT_BUBBLE );   /// Flags
+lv_obj_add_flag( ui_Container1, LV_OBJ_FLAG_HIDDEN | LV_OBJ_FLAG_CHECKABLE | LV_OBJ_FLAG_EVENT_BUBBLE );   /// Flags
 lv_obj_clear_flag( ui_Container1, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
 lv_obj_set_style_bg_color(ui_Container1, lv_color_hex(0x003049), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_bg_opa(ui_Container1, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
