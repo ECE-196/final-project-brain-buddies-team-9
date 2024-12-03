@@ -213,6 +213,6 @@ lv_obj_add_event_cb(ui_done, ui_event_done, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_bottomButton, ui_event_bottomButton, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_back, ui_event_back, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_selectButton, ui_event_selectButton, LV_EVENT_ALL, NULL);
-uic_Image5 = ui_racon;
+uic_racon = ui_racon;
 
 }

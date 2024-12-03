@@ -106,7 +106,7 @@ void ui_event_back( lv_event_t * e);
 extern lv_obj_t *ui_back;
 extern lv_obj_t *ui_racon;
 // CUSTOM VARIABLES
-extern lv_obj_t *uic_Image5;
+extern lv_obj_t *uic_racon;
 
 // EVENTS
 extern lv_obj_t *ui____initial_actions0;
