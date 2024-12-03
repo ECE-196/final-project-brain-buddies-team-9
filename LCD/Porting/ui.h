@@ -102,6 +102,7 @@ void ui_event_selectButton( lv_event_t * e);
 extern lv_obj_t *ui_selectButton;
 void ui_event_back( lv_event_t * e);
 extern lv_obj_t *ui_back;
+extern lv_obj_t *ui_Image2;
 // CUSTOM VARIABLES
 
 // EVENTS

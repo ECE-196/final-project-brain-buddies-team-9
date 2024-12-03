@@ -1,4 +1,4 @@
-img/*
+/*
  * SPDX-FileCopyrightText: 2024 Espressif Systems (Shanghai) CO LTD
  *
  * SPDX-License-Identifier: CC0-1.0
@@ -835,7 +835,7 @@ bool lvgl_port_deinit(void)
     }
 #endif
     if (lvgl_mux != nullptr) {
-        vSemaphoreDelete(lvgl_mux); 
+        vSemaphoreDelete(lvgl_mux);
         lvgl_mux = nullptr;
     }
 

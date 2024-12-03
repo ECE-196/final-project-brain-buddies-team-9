@@ -84,6 +84,7 @@ void ui_event_selectButton( lv_event_t * e);
 lv_obj_t *ui_selectButton;
 void ui_event_back( lv_event_t * e);
 lv_obj_t *ui_back;
+lv_obj_t *ui_Image2;
 // CUSTOM VARIABLES
 
 // EVENTS
@@ -234,7 +235,7 @@ if ( event_code == LV_EVENT_CLICKED) {
 ///////////////////// SCREENS ////////////////////
 
 void ui_init( void )
-{LV_EVENT_GET_COMP_CHILD = lv_event_register_id();
+{//LV_EVENT_GET_COMP_CHILD = lv_event_register_id();
 
 lv_disp_t *dispp = lv_disp_get_default();
 lv_theme_t *theme = lv_theme_default_init(dispp, lv_palette_main(LV_PALETTE_BLUE), lv_palette_main(LV_PALETTE_RED), false, LV_FONT_DEFAULT);
