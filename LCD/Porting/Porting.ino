@@ -167,6 +167,12 @@ struct task{
 	int completedAmount;
 };
 
+struct taskStructure{
+  task* current;
+  task* prev;
+  task* next;
+};
+
 uint64_t init_time; // here accessable everywhere, const since only set once.
 uint64_t currentMicros;
 uint64_t previousMicros;
@@ -321,7 +327,21 @@ void setup(){
   //   LV_IMG_DECLARE(my_racon_dsc);
   //   lv_obj_t * icon = lv_img_create(lv_scr_act(),NULL)
   //   lv_img_set_src(icon, "S:racon.c");
-  }
+
+  // create a struc with data {current task, prev task, next task} all poitners to the task struct 
+  taskStructure S = { 
+    taskListTwo[0],
+    taskListTwo[1],
+    taskListTwo[9]
+  };
+
+  // need to initialize the tasks in task page
+
+  //initialize task in home page
+  // initialize task in focus page
+
+
+}
 
 void loop(){
 
@@ -566,4 +586,24 @@ void updateTasksTextFromHome(const char* action) {
         lv_label_set_text(ui_nextTasklabel, taskListTwo[taskCounter2 + 1].name);
     } 
 }
+
+
+// functions to inilialize tasks
+
+void updateFocusTasks(taskStructure s){
+  // uodate current task
+  lv_label_set_text(ui_actualTask, s.current);
+}
+void updateHomeTasks(taskStructure s){
+  // updated current & next task
+  lv_label_set_text(ui_currentTaskLable, s.current);
+  lv_label_set_text(ui_nextTasklabel, s.next);
+}
+void updateTaskPageTasks(taskStructure s){
+  // update all tasks current, prev, next
+  lv_label_set_text(ui_centerTask, s.current);
+  lv_label_set_text(ui_bottomTask, s.next);
+  lv_label_set_text(ui_topTask, s.prev);
+}
+
 
