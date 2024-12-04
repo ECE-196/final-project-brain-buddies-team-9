@@ -33,11 +33,12 @@ extern "C" {
 void ui_Task_Page_screen_init(void);
 void ui_event_Task_Page( lv_event_t * e);
 extern lv_obj_t *ui_Task_Page;
+extern lv_obj_t *ui_Panel3;
 extern lv_obj_t *ui_topTask;
+extern lv_obj_t *ui_bottomTask;
 void ui_event_curseBox( lv_event_t * e);
 extern lv_obj_t *ui_curseBox;
 extern lv_obj_t *ui_centerTask;
-extern lv_obj_t *ui_bottomTask;
 void ui_event_UpButton( lv_event_t * e);
 extern lv_obj_t *ui_UpButton;
 extern lv_obj_t *ui_UPButton;
@@ -71,6 +72,8 @@ extern lv_obj_t *ui_actualTask;
 void ui_event_homeFromFocus( lv_event_t * e);
 extern lv_obj_t *ui_homeFromFocus;
 extern lv_obj_t *ui_homeButtonFromFocus;
+extern lv_obj_t *ui_decor3;
+extern lv_obj_t *ui_decor4;
 // CUSTOM VARIABLES
 
 // SCREEN: ui_Home_Page
@@ -102,6 +105,8 @@ void ui_event_selectButton( lv_event_t * e);
 extern lv_obj_t *ui_selectButton;
 void ui_event_back( lv_event_t * e);
 extern lv_obj_t *ui_back;
+extern lv_obj_t *ui_decor1;
+extern lv_obj_t *ui_decor2;
 // CUSTOM VARIABLES
 
 // EVENTS

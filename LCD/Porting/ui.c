@@ -13,11 +13,12 @@
 void ui_Task_Page_screen_init(void);
 void ui_event_Task_Page( lv_event_t * e);
 lv_obj_t *ui_Task_Page;
+lv_obj_t *ui_Panel3;
 lv_obj_t *ui_topTask;
+lv_obj_t *ui_bottomTask;
 void ui_event_curseBox( lv_event_t * e);
 lv_obj_t *ui_curseBox;
 lv_obj_t *ui_centerTask;
-lv_obj_t *ui_bottomTask;
 void ui_event_UpButton( lv_event_t * e);
 lv_obj_t *ui_UpButton;
 lv_obj_t *ui_UPButton;
@@ -52,6 +53,8 @@ lv_obj_t *ui_actualTask;
 void ui_event_homeFromFocus( lv_event_t * e);
 lv_obj_t *ui_homeFromFocus;
 lv_obj_t *ui_homeButtonFromFocus;
+lv_obj_t *ui_decor3;
+lv_obj_t *ui_decor4;
 // CUSTOM VARIABLES
 
 
@@ -84,6 +87,8 @@ void ui_event_selectButton( lv_event_t * e);
 lv_obj_t *ui_selectButton;
 void ui_event_back( lv_event_t * e);
 lv_obj_t *ui_back;
+lv_obj_t *ui_decor1;
+lv_obj_t *ui_decor2;
 // CUSTOM VARIABLES
 
 // EVENTS
@@ -234,7 +239,8 @@ if ( event_code == LV_EVENT_CLICKED) {
 ///////////////////// SCREENS ////////////////////
 
 void ui_init( void )
-{//LV_EVENT_GET_COMP_CHILD = lv_event_register_id();
+{
+  //LV_EVENT_GET_COMP_CHILD = lv_event_register_id();
 
 lv_disp_t *dispp = lv_disp_get_default();
 lv_theme_t *theme = lv_theme_default_init(dispp, lv_palette_main(LV_PALETTE_BLUE), lv_palette_main(LV_PALETTE_RED), false, LV_FONT_DEFAULT);
