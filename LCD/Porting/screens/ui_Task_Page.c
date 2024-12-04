@@ -62,7 +62,7 @@ lv_obj_set_align( ui_centerTask, LV_ALIGN_LEFT_MID );
 lv_label_set_text(ui_centerTask,"centerTask");
 lv_obj_set_style_text_color(ui_centerTask, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_text_opa(ui_centerTask, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_text_font(ui_centerTask, &lv_font_montserrat_28, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_font(ui_centerTask, &lv_font_montserrat_26, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 ui_UpButton = lv_btn_create(ui_Task_Page);
 lv_obj_set_width( ui_UpButton, 65);
@@ -134,9 +134,9 @@ lv_obj_set_style_text_font(ui_taskPageLabel, &lv_font_montserrat_14, LV_PART_MAI
 
 ui_taskInfo = lv_obj_create(ui_Task_Page);
 lv_obj_remove_style_all(ui_taskInfo);
-lv_obj_set_width( ui_taskInfo, 363);
+lv_obj_set_width( ui_taskInfo, 388);
 lv_obj_set_height( ui_taskInfo, 214);
-lv_obj_set_x( ui_taskInfo, 25 );
+lv_obj_set_x( ui_taskInfo, 32 );
 lv_obj_set_y( ui_taskInfo, 0 );
 lv_obj_set_align( ui_taskInfo, LV_ALIGN_CENTER );
 lv_obj_add_state( ui_taskInfo, LV_STATE_DISABLED );     /// States
