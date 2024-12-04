@@ -86,23 +86,49 @@ volatile byte infoVisible = false;
 uint64_t seconds = 1*1000*1000; // 23 * seconds -> 23 seconds in microseconds
 uint64_t minutes = 60*seconds;  // 45 * minutes -> 45 minutes in microseconds
 uint64_t hours   = 60*minutes;  // 3  * hours   -> 3  hours   in microseconds
-const int taskListLength = 10;
+const int taskListLength = 24;
 //set up struct array
 task taskListTwo[taskListLength]= { // these must be in numerical order for 24hrTime
+  {1600 ,    "4:00PM",   "ECE196 Class", 0, 0},
+  {1605 ,    "4:05PM",   "We <3 ECE196", 0, 0},
+  {1610 ,    "4:10PM",   "Read", 0, 0},
+  {1615 ,    "4:15PM",   "Nap", 0, 0},
+  {1620 ,    "4:20PM",   "Snack", 0, 0},
+  {1625 ,    "4:25PM",   "Solder", 0, 0},
+  {1630 ,    "4:30PM",   "ECE 5 Tutor", 0, 0},
+  {1635 ,    "4:35PM",   "Hire me", 0, 0},
+  {1640 ,    "4:40PM",   "Interview", 0, 0},
+  {1645 ,    "4:45PM",   "Leet Code", 0, 0},
+  {1650 ,    "4:50PM",   "NERDS", 0, 0},
+  {1655 ,    "4:55PM",   "Program", 0, 0},
+  {1700 ,    "5:00PM",   "We ROCK", 0, 0},
+  {1705 ,    "5:05PM",   "Music", 0, 0},
+  {1710 ,    "5:10PM",   "Gym", 0, 0},
+  {1715 ,    "5:15PM",   "Eat", 0, 0},
+  {1720 ,    "5:20PM",   "Homework", 0, 0},
+  {1725 ,    "5:25PM",   "Jog", 0, 0},
+  {1730 ,    "5:30PM",   "Work", 0, 0},
+  {1735 ,    "5:35PM",   "Cry :,( ", 0, 0},
+  {1740 ,    "5:40PM",   "Email Prof", 0, 0},
+  {1745 ,    "5:45PM",   "Call Mom", 0, 0},
+  {1750 ,    "5:50PM",   "Call Karcher", 0, 0},
+  {1755 ,    "5:55PM",   "Sleep", 0, 0}
   // {800 ,    "8:00AM",   "Wake up", 0, 0},
   // {900 ,    "9:00AM",   "Eat breakfast", 0, 0},
   // {1000,    "10:00AM",  "Go to school", 0, 0},
   // {1100,    "11:00AM",  "Attend classes", 0, 0},
   // {1500,    "3:00PM",   "Eat lunch", 0, 0},
-  {1700,    "5:00 PM -",   "Leave school", 0, 0},
-  {1800,    "6:00 PM -",   "Go to gym", 0, 0},
-  {1855,    "6:55 PM -",  "Become Enlightened :)", 0, 0},
-  {1858,    "6:58 PM -",  "level up code :)", 0, 0},
-  {1900,    "7:00 PM -",   "Eat dinner", 0, 0},
-  {2030,    "8:30 PM -",  "Homework Time", 0, 0},
-  {2000,    "8:00 PM -",   "", 0, 0},
-
-  {2200,   "10:00 PM -",  "Go to sleep", 0, 0}
+  // {1700,    "5:00 PM",   "Leave school", 0, 0},
+  // {1800,    "6:00 PM",   "Go to gym", 0, 0},
+  // {1900,    "7:00 PM",   "Eat dinner", 0, 0},
+  //{2000,    "8:00 PM",   "Study", 0, 0},
+  //{2100,   "9:00 PM",  "Eat Dinner", 0, 0},
+  // {2200,   "10:00 PM",  "Finish HW", 0, 0},
+  // {2230,   "10:30 PM",  "Relax", 0, 0},
+  // {2250,   "10:50 PM",  "Shower", 0, 0},
+  // {2300,   "11:00 PM",  "Drink tea", 0, 0},
+  // {2315,   "11:15 PM",  "Read before bed", 0, 0},
+  // {2330,   "11:30 PM",  "SLEEP", 0, 0}
 };
 
 task demoTaskList[3] = {
@@ -428,15 +454,15 @@ void updateFocusTasks(taskStructure& aTaskStruct){
 void updateHomeTasks(taskStructure& aTaskStruct){
   Serial.println("Update home task");
   // updated current & next task
-  lv_label_set_text_fmt(ui_currentTaskLable, "%s %s", aTaskStruct.current->time, aTaskStruct.current->name);
-  lv_label_set_text_fmt(ui_nextTasklabel, "%s %s", aTaskStruct.next->time, aTaskStruct.next->name);
+  lv_label_set_text_fmt(ui_currentTaskLable, "%s - %s", aTaskStruct.current->time, aTaskStruct.current->name);
+  lv_label_set_text_fmt(ui_nextTasklabel, "%s - %s", aTaskStruct.next->time, aTaskStruct.next->name);
 }
 void updateTaskPageTasks(taskStructure& aTaskStruct){
   Serial.println("Update task page task");
   // update all tasks current, prev, next
-  lv_label_set_text_fmt(ui_centerTask, "%s %s", aTaskStruct.current->time, aTaskStruct.current->name);
-  lv_label_set_text_fmt(ui_bottomTask, "%s %s", aTaskStruct.next->time, aTaskStruct.next->name);
-  lv_label_set_text_fmt(ui_topTask, "%s %s", aTaskStruct.prev->time, aTaskStruct.prev->name);
+  lv_label_set_text_fmt(ui_centerTask, "%s - %s", aTaskStruct.current->time, aTaskStruct.current->name);
+  lv_label_set_text_fmt(ui_bottomTask, "%s - %s", aTaskStruct.next->time, aTaskStruct.next->name);
+  lv_label_set_text_fmt(ui_topTask, "%s - %s", aTaskStruct.prev->time, aTaskStruct.prev->name);
 }
 
 //////// Functions to inilialize taks in POPUP ///////
