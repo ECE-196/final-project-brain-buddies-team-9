@@ -8,7 +8,7 @@ FOR PORTING INSTRUCTIONS SEE EXAMPLE IN: File > Examples > ESP32_Display_Panel >
     DOWN: pin15
     RIGHT: pin14
     LEFT: pin17
-  
+
   selection:
     TOP: pin1
     SELECT: pin2
@@ -67,8 +67,8 @@ void updateTaskPageTasks(taskStructure& s);
 void prevTask(taskStructure& s);
 void nextTask(taskStructure& s);
 
-void updateTaskInPopUp(taskStructure& s);
-void updateTimeInPopUp(taskStructure& s);
+void updateTaskInPopUp(task* t);
+void updateTimeInPopUp(task* t);
 
 enum action { SKIP, DONE, BACK };
 
@@ -108,13 +108,13 @@ task taskListTwo[taskListLength]= {
   // {5  * hours,    "10:00pm",  "Go to sleep", 0, 0},
 };
 
-// initialize a taskStructure with data {current task, prev task, next task} all poitners to the task array 
-taskStructure S = { 
+// initialize a taskStructure with data {current task, prev task, next task} all poitners to the task array
+taskStructure S = {
   &taskListTwo[taskListLength - 1],
   &taskListTwo[0],
   &taskListTwo[1]
 };
-taskStructure S_taskPage = { 
+taskStructure S_taskPage = {
   &taskListTwo[taskListLength - 1],
   &taskListTwo[0],
   &taskListTwo[1]
@@ -138,9 +138,9 @@ void setup(){
   Serial.begin(115200);
   // Configure dpad buttons
   pinMode(16, INPUT_PULLDOWN);  // Configure PCB buttons, using PULLDOWN since button volt diff is initially 0 so need to pull to ground
-  pinMode(17, INPUT_PULLDOWN); 
-  pinMode(15, INPUT_PULLDOWN); 
-  pinMode(14, INPUT_PULLDOWN); 
+  pinMode(17, INPUT_PULLDOWN);
+  pinMode(15, INPUT_PULLDOWN);
+  pinMode(14, INPUT_PULLDOWN);
 
   // Configure decision buttons
   pinMode(1, INPUT_PULLDOWN);
@@ -148,16 +148,16 @@ void setup(){
   pinMode(3, INPUT_PULLDOWN);
 
   // Interupts for Dpad
-  attachInterrupt(digitalPinToInterrupt(interruptUpPin), changeUpState, RISING); 
-  attachInterrupt(digitalPinToInterrupt(interruptDownPin), changeDownState, RISING); 
-  attachInterrupt(digitalPinToInterrupt(interruptRightPin), changeRightState, RISING); 
-  attachInterrupt(digitalPinToInterrupt(interruptLeftPin), changeLeftState, RISING); 
+  attachInterrupt(digitalPinToInterrupt(interruptUpPin), changeUpState, RISING);
+  attachInterrupt(digitalPinToInterrupt(interruptDownPin), changeDownState, RISING);
+  attachInterrupt(digitalPinToInterrupt(interruptRightPin), changeRightState, RISING);
+  attachInterrupt(digitalPinToInterrupt(interruptLeftPin), changeLeftState, RISING);
 
   // Interupts for Decision
-  attachInterrupt(digitalPinToInterrupt(interruptTopPin), changeTopState , RISING); 
-  attachInterrupt(digitalPinToInterrupt(interruptSelectPin), changeSelectState, RISING); 
-  attachInterrupt(digitalPinToInterrupt(interruptBottomPin), changeBottomState, RISING); 
-  
+  attachInterrupt(digitalPinToInterrupt(interruptTopPin), changeTopState , RISING);
+  attachInterrupt(digitalPinToInterrupt(interruptSelectPin), changeSelectState, RISING);
+  attachInterrupt(digitalPinToInterrupt(interruptBottomPin), changeBottomState, RISING);
+
   setupClockTime(ssid, password);
   lastClockUpdateMicros = esp_timer_get_time();
   //Serial.println("Squareline porting example start");
@@ -181,7 +181,11 @@ void setup(){
   //Serial.println("Squareline porting example end");
   init_time = esp_timer_get_time();
 
-
+  while(!current24hrTime){
+    Serial.println("time not ready! the current time is:");
+    Serial.println(current24hrTime);
+    delay(1);
+  };
   initializeTaskStructure(S);
   // // need to initialize the tasks in task page
   // updateTaskPageTasks(S);
@@ -191,8 +195,8 @@ void setup(){
   // updateFocusTasks(S);
 
   // update popUp
-  updateTimeInPopUp(S);
-  updateTaskInPopUp(S);
+  updateTimeInPopUp(S.current);
+  updateTaskInPopUp(S.current);
 
   // delay(2000);
   // Serial.print("Size of Task: "); Serial.println((long)taskIncrement);
@@ -212,7 +216,7 @@ void loop(){
   if(lastClockUpdateMicros + 1 * minutes < currentMicros){
     lastClockUpdateMicros = currentMicros;
     printLocalTime();
-  }   
+  }
   lv_obj_t* current_screen = lv_scr_act();
 
   //      setup for UP Button
@@ -223,7 +227,7 @@ void loop(){
     //upState = LOW;
     //allButtonLow();
   }
-  
+
   //     setup for Down Button
   downPinState = digitalRead(interruptDownPin);
   if(HIGH == downState && LOW == downPinState){
@@ -272,7 +276,7 @@ void loop(){
     Serial.println("selectFromHome");
     selectFromHome();
    // allButtonLow();
-    // create a function that when called it sets all states to low. 
+    // create a function that when called it sets all states to low.
   }
   if(HIGH == bottomState && LOW == bottomPinState && current_screen == ui_Home_Page && containerVisible == true){
     allButtonLow();
@@ -285,7 +289,7 @@ void loop(){
   }
   else if(HIGH == selectState && LOW == selectPinState && current_screen == ui_Home_Page && containerVisible == true){
     Serial.println("selectFromContainer");
-    bottomFromContainer(); 
+    bottomFromContainer();
     // selectState = LOW;
     // bottomState = LOW;
     // topState = LOW;
@@ -306,13 +310,16 @@ void loop(){
 	//	do the popup/notif
   //time24hr
 
-  // for this need to , if  time of the next task is less than  current 24 hr, then we need to 
-  // shift tasks up 
+  // for this need to , if  time of the next task is less than  current 24 hr, then we need to
+  // shift tasks up
   // use next task and call updatehometasks
   //uodate curr and do pop up(text)
 
   if(S.next->time24hr < current24hrTime){
-    Serial.println("next24hour in statement activated");
+    Serial.println("next24hour if statement activated");
+    nextTask(S);
+    updateFocusTasks(S);
+    updateHomeTasks(S);
     lv_obj_clear_flag(ui_Container1, LV_OBJ_FLAG_HIDDEN);
     containerVisible = true;
   }
@@ -340,7 +347,7 @@ void allButtonLow(){
   selectState = LOW;
   bottomState = LOW;
 }
-//  Dpad 
+//  Dpad
 //  update UP button
 void changeUpState(){upState = HIGH;}
 //  update DOWN button
@@ -373,7 +380,7 @@ void focusFromHome(){lv_event_send(ui_focusFromHome, LV_EVENT_CLICKED, NULL);}  
 void homeFromTask(){lv_event_send(ui_homeFromTask, LV_EVENT_CLICKED, NULL );}   // go to home page
 
 
-// CUSTOM FUNCTIONS FOR NAVEGATING IN PAGES 
+// CUSTOM FUNCTIONS FOR NAVEGATING IN PAGES
 //Using UP button on TASK page
 void upFromTask(taskStructure& s){
   prevTask(s);
@@ -438,8 +445,8 @@ void selectfromContainer(taskStructure& s){
   lv_event_send(ui_selectButton, LV_EVENT_CLICKED, NULL);
   updateTasksTextFromHome(DONE, s);
    // update popUp
-  updateTimeInPopUp(s);
-  updateTaskInPopUp(s);  
+  updateTimeInPopUp(s.current);
+  updateTaskInPopUp(s.current);
   containerVisible = false;
 }
 
@@ -447,8 +454,8 @@ void topfromContainer(taskStructure& s){
   lv_event_send(ui_topButton, LV_EVENT_CLICKED, NULL);
   updateTasksTextFromHome(SKIP, s);
    // update popUp
-  updateTimeInPopUp(s);
-  updateTaskInPopUp(s);  
+  updateTimeInPopUp(s.current);
+  updateTaskInPopUp(s.current);
   containerVisible = false;
 }
 
@@ -461,12 +468,12 @@ void updateTasksTextFromHome(action anAction, taskStructure& s) {
     updateHomeTasks(s);
     // taskListTwo[taskCounter2].skippedAmount ++;
     // taskCounter2++;
-    // if(taskCounter2 == 8) { 
-    //     taskCounter2 = 0; 
+    // if(taskCounter2 == 8) {
+    //     taskCounter2 = 0;
     // }
     // lv_label_set_text(ui_currentTaskLable, taskListTwo[taskCounter2].name);
     // lv_label_set_text(ui_nextTasklabel, taskListTwo[taskCounter2 + 1].name);
-  } 
+  }
   else{
   //else if (strcmp(action, "DONE") == 0) {
     s.current->skippedAmount++;
@@ -474,12 +481,12 @@ void updateTasksTextFromHome(action anAction, taskStructure& s) {
     updateHomeTasks(s);
     // taskListTwo[taskCounter2].completedAmount ++;
     // taskCounter2++;
-    // if (taskCounter2 == 8) { 
-    //     taskCounter2 = 0; 
+    // if (taskCounter2 == 8) {
+    //     taskCounter2 = 0;
     // }
     // lv_label_set_text(ui_currentTaskLable, taskListTwo[taskCounter2].name);
     // lv_label_set_text(ui_nextTasklabel, taskListTwo[taskCounter2 + 1].name);
-  } 
+  }
 }
 
 // GOATED LVGL CREATOR: lv_label_set_text_fmt(label, "Value: %d", 15) for printf formating
@@ -504,11 +511,11 @@ void updateTaskPageTasks(taskStructure& s){
 }
 
 //////// Functions to inilialize taks in POPUP ///////
-void updateTaskInPopUp(taskStructure& s){
-  lv_label_set_text_fmt(ui_selectedTask, "%s", s.current->name);
+void updateTaskInPopUp(task* t){
+  lv_label_set_text_fmt(ui_selectedTask, "%s", t->name);
 }
-void updateTimeInPopUp(taskStructure& s){
-  lv_label_set_text_fmt(ui_time, "%s", s.current->time);
+void updateTimeInPopUp(task* t){
+  lv_label_set_text_fmt(ui_time, "%s", t->time);
 }
 
 // initialize the taskStructure so that the current task matches the time.
@@ -530,7 +537,7 @@ void nextTask(taskStructure& s){
     s.next = taskListBegin;
   }
   else{
-    s.next ++;//= taskIncrement; 
+    s.next ++;//= taskIncrement;
   }
   Serial.println("nextTask Diagnostic:");
   Serial.println((long)s.prev); Serial.println((long)s.current); Serial.println((long)s.next);
@@ -544,7 +551,7 @@ void prevTask(taskStructure& s){
     s.prev = taskListEnd;
   }
   else{
-    s.prev --;// taskIncrement; 
+    s.prev --;// taskIncrement;
   }
 }
 

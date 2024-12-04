@@ -91,7 +91,7 @@ void setupClockTime(char* ssid, char* password){
       WifiAttemptCount++;
       if(5 < WifiAttemptCount){
         Serial.println(" CONNECTION FAILED");
-        break;
+        return;
       }
     }
     Serial.println(" CONNECTED");
