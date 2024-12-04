@@ -99,7 +99,9 @@ task taskListTwo[taskListLength]= { // these must be in numerical order for 24hr
   {1855,    "6:55 PM -",  "Become Enlightened :)", 0, 0},
   {1858,    "6:58 PM -",  "level up code :)", 0, 0},
   {1900,    "7:00 PM -",   "Eat dinner", 0, 0},
-  {2000,    "8:00 PM -",   "Shower", 0, 0},
+  {2030,    "8:30 PM -",  "Homework Time", 0, 0},
+  {2000,    "8:00 PM -",   "", 0, 0},
+
   {2200,   "10:00 PM -",  "Go to sleep", 0, 0}
 };
 
