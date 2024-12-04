@@ -31,7 +31,7 @@ FOR PORTING INSTRUCTIONS SEE EXAMPLE IN: File > Examples > ESP32_Display_Panel >
 // struct for task
 struct task{
   uint64_t time24hr;   //military time with miliseconds
-	char time[10];
+	char time[11];
 	char name[100];
 	int skippedAmount;
 	int completedAmount;
@@ -53,19 +53,22 @@ void changeRightState();
 void changeLeftState();
 void allButtonLow();
 
+void selectFromInfo(taskStructure& aTaskStruct);
+void sBackfromContainer();
+
 void updateTasksTextFromHome();
-void bottomFromContainer(taskStructure& s);
-void selectfromContainer(taskStructure& s);
-void topfromContainer(taskStructure& s);
+void bottomFromContainer(taskStructure& aTaskStruct);
+void selectfromContainer(taskStructure& aTaskStruct);
+void topfromContainer(taskStructure& aTaskStruct);
 
-void initializeTaskStructure(taskStructure& s);
+void initializeTaskStructure(taskStructure& aTaskStruct);
 
-void updateFocusTasks(taskStructure& s);
-void updateHomeTasks(taskStructure& s);
-void updateTaskPageTasks(taskStructure& s);
+void updateFocusTasks(taskStructure& aTaskStruct);
+void updateHomeTasks(taskStructure& aTaskStruct);
+void updateTaskPageTasks(taskStructure& aTaskStruct);
 
-void prevTask(taskStructure& s);
-void nextTask(taskStructure& s);
+void prevTask(taskStructure& aTaskStruct);
+void nextTask(taskStructure& aTaskStruct);
 
 void updateTaskInPopUp(task* t);
 void updateTimeInPopUp(task* t);
@@ -78,58 +81,49 @@ uint64_t previousMicros;
 uint64_t lastClockUpdateMicros;
 
 volatile byte containerVisible = false;
+volatile byte infoVisible = false;
 
 uint64_t seconds = 1*1000*1000; // 23 * seconds -> 23 seconds in microseconds
 uint64_t minutes = 60*seconds;  // 45 * minutes -> 45 minutes in microseconds
 uint64_t hours   = 60*minutes;  // 3  * hours   -> 3  hours   in microseconds
 const int taskListLength = 10;
 //set up struct array
-task taskListTwo[taskListLength]= {
-  {800 ,    "8:00am",   "Wake up", 0, 0},
-  {900 ,    "9:00am",   "Eat breakfast", 0, 0},
-  {1000,    "10:00am",  "Go to school", 0, 0},
-  {1100,    "11:00am",  "Attend classes", 0, 0},
-  {1500,    "3:00pm",   "Eat lunch", 0, 0},
-  {1700,    "5:00pm",   "Leave school", 0, 0},
-  {1800,    "6:00pm",   "Go to gym", 0, 0},
-  {1900,    "7:00pm",   "Eat dinner", 0, 0},
-  {2000,    "8:00pm",   "Shower", 0, 0},
-  {2200,    "10:00pm",  "Go to sleep", 0, 0},
+task taskListTwo[taskListLength]= { // these must be in numerical order for 24hrTime
+  // {800 ,    "8:00AM",   "Wake up", 0, 0},
+  // {900 ,    "9:00AM",   "Eat breakfast", 0, 0},
+  // {1000,    "10:00AM",  "Go to school", 0, 0},
+  // {1100,    "11:00AM",  "Attend classes", 0, 0},
+  // {1500,    "3:00PM",   "Eat lunch", 0, 0},
+  {1700,    "5:00 PM -",   "Leave school", 0, 0},
+  {1800,    "6:00 PM -",   "Go to gym", 0, 0},
+  {1855,    "6:55 PM -",  "Become Enlightened :)", 0, 0},
+  {1858,    "6:58 PM -",  "level up code :)", 0, 0},
+  {1900,    "7:00 PM -",   "Eat dinner", 0, 0},
+  {2030,    "8:30 PM -",  "Homework Time", 0, 0},
+  {2000,    "8:00 PM -",   "", 0, 0},
 
-  // {30 * seconds,  "8:00am",   "Wake up", 0, 0},
-  // {2  * minutes,  "9:00am",   "Eat breakfast", 0, 0},
-  // {5  * minutes,  "10:00am",  "Go to school", 0, 0},
-  // {10 * minutes,  "11:00am",  "Attend classes", 0, 0},
-  // {30 * minutes,  "3:00pm",   "Eat lunch", 0, 0},
-  // {1  * hours,    "5:00pm",   "Leave school", 0, 0},
-  // {2  * hours,    "6:00pm",   "Go to gym", 0, 0},
-  // {3  * hours,    "7:00pm",   "Eat dinner", 0, 0},
-  // {4  * hours,    "8:00pm",   "Shower", 0, 0},
-  // {5  * hours,    "10:00pm",  "Go to sleep", 0, 0},
+  {2200,   "10:00 PM -",  "Go to sleep", 0, 0}
+};
+
+task demoTaskList[3] = {
+  {1600, "4:00PM", "DEMO DAY", 0, 0},
+  {1603, "4:03PM", "Present", 0,0},
+  {1608, "4:08PM", "5min Passed",0,0}
 };
 
 // initialize a taskStructure with data {current task, prev task, next task} all poitners to the task array
-taskStructure S = {
+taskStructure taskStructHomeAndFocus = { //
   &taskListTwo[taskListLength - 1],
   &taskListTwo[0],
   &taskListTwo[1]
 };
-taskStructure S_taskPage = {
+taskStructure taskStructTask = { //S_taskPage
   &taskListTwo[taskListLength - 1],
   &taskListTwo[0],
   &taskListTwo[1]
 };
 task *taskListBegin = &taskListTwo[0];
 task *taskListEnd = &taskListTwo[taskListLength - 1];
-
-//int taskCounter2 = 0;
-//int taskListLength2 = 10;
-
-//Declarations for button up
-//char taskList[10][10] = {"8am", "9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm"};
-
-//int taskCounter = 9;
-
 
 // get root widget
 lv_obj_t* root_widget = lv_obj_get_parent(lv_scr_act());
@@ -186,25 +180,13 @@ void setup(){
     Serial.println(current24hrTime);
     delay(1);
   };
-  initializeTaskStructure(S);
-  // // need to initialize the tasks in task page
-  // updateTaskPageTasks(S);
-  // //initialize task in home page
-  // updateHomeTasks(S);
-  // // initialize task in focus page
-  // updateFocusTasks(S);
+  initializeTaskStructure(taskStructHomeAndFocus);
+  initializeTaskStructure(taskStructTask);
 
   // update popUp
-  updateTimeInPopUp(S.current);
-  updateTaskInPopUp(S.current);
+  updateTimeInPopUp(taskStructHomeAndFocus.current);
+  updateTaskInPopUp(taskStructHomeAndFocus.current);
 
-  // delay(2000);
-  // Serial.print("Size of Task: "); Serial.println((long)taskIncrement);
-  // Serial.print("Begin Address: "); Serial.println((long)taskListBegin);
-  // Serial.print("End Address: "); Serial.println((long)taskListEnd);
-  // for(int i = 0; i < taskListLength; i++){
-  //   Serial.print("Address "); Serial.println(i); Serial.println((long)&taskListTwo[i]);
-  // }
   Serial.println("end setup");
   delay (2000);
 }
@@ -223,18 +205,14 @@ void loop(){
   upPinState = digitalRead(interruptUpPin);
   if(HIGH == upState && LOW == upPinState){
     allButtonLow();
-    upFromTask(S_taskPage);
-    //upState = LOW;
-    //allButtonLow();
+    upFromTask(taskStructTask);
   }
 
   //     setup for Down Button
   downPinState = digitalRead(interruptDownPin);
   if(HIGH == downState && LOW == downPinState){
     allButtonLow();
-    downFromTask(S_taskPage);
-    //downState = LOW;
-    //allButtonLow();
+    downFromTask(taskStructTask);
   }
 
   //     setup for Right Button
@@ -247,8 +225,6 @@ void loop(){
     if(current_screen == ui_Focus_Page){
       homeFromFocus();
     }
-    //rightState = LOW;
-    //allButtonLow();
   }
 
   //      set up for LEFT Button
@@ -260,7 +236,6 @@ void loop(){
     if(current_screen == ui_Task_Page){
       homeFromTask();
     }
-    //leftState = LOW;
     allButtonLow();
   }
 
@@ -271,55 +246,45 @@ void loop(){
   topPinState = digitalRead(interruptTopPin);
   bottomPinState = digitalRead(interruptBottomPin);
 
-  if(HIGH == selectState && LOW == selectPinState && current_screen == ui_Home_Page && containerVisible == false){
+
+////// Select from task page & info container
+  if(HIGH == selectState && LOW == selectPinState && current_screen == ui_Task_Page && infoVisible == false){
+    selectFromInfo(taskStructTask);
     allButtonLow();
+  }
+  if(HIGH == bottomState && LOW == bottomPinState && current_screen == ui_Task_Page && infoVisible == true){
+    sBackfromContainer();
+    allButtonLow();
+  }
+
+////// Bottons in HOME PAGE & container
+  if(HIGH == selectState && LOW == selectPinState && current_screen == ui_Home_Page && containerVisible == false){
     Serial.println("selectFromHome");
     selectFromHome();
-   // allButtonLow();
+    allButtonLow();
     // create a function that when called it sets all states to low.
   }
   if(HIGH == bottomState && LOW == bottomPinState && current_screen == ui_Home_Page && containerVisible == true){
-    allButtonLow();
     Serial.println("bottomFromContainer");
-    selectfromContainer(S);
-    // selectState = LOW;
-    // bottomState = LOW;
-    // topState = LOW;
-    //allButtonLow();
+    selectfromContainer(taskStructHomeAndFocus);
+    allButtonLow();
   }
   else if(HIGH == selectState && LOW == selectPinState && current_screen == ui_Home_Page && containerVisible == true){
     Serial.println("selectFromContainer");
     bottomFromContainer();
-    // selectState = LOW;
-    // bottomState = LOW;
-    // topState = LOW;
     allButtonLow();
   }
   else if(HIGH == topState && LOW == topPinState && current_screen == ui_Home_Page && containerVisible == true){
     Serial.println("topFromContainer");
-    topfromContainer(S);
-    // selectState = LOW;
-    // bottomState = LOW;
-    // topState = LOW;
+    topfromContainer(taskStructHomeAndFocus);
     allButtonLow();
   }
 
-
-  // Havng a notification POPUP
-  //if (task_time_in_microseconds + init_time < currentMicrosec){
-	//	do the popup/notif
-  //time24hr
-
-  // for this need to , if  time of the next task is less than  current 24 hr, then we need to
-  // shift tasks up
-  // use next task and call updatehometasks
-  //uodate curr and do pop up(text)
-
-  if(S.next->time24hr < current24hrTime){
+  if(taskStructHomeAndFocus.next->time24hr <= current24hrTime){
     Serial.println("next24hour if statement activated");
-    nextTask(S);
-    updateFocusTasks(S);
-    updateHomeTasks(S);
+    nextTask(taskStructHomeAndFocus);
+    updateFocusTasks(taskStructHomeAndFocus);
+    updateHomeTasks(taskStructHomeAndFocus);
     lv_obj_clear_flag(ui_Container1, LV_OBJ_FLAG_HIDDEN);
     containerVisible = true;
   }
@@ -382,53 +347,16 @@ void homeFromTask(){lv_event_send(ui_homeFromTask, LV_EVENT_CLICKED, NULL );}   
 
 // CUSTOM FUNCTIONS FOR NAVEGATING IN PAGES
 //Using UP button on TASK page
-void upFromTask(taskStructure& s){
-  prevTask(s);
-  updateTaskPageTasks(s);
-
-  // taskCounter--;
-  // if(taskCounter == -1){
-  //   taskCounter = 9;
-  // }
-  // //    Special Cases
-  // if(taskCounter == 0){
-  //   updateTaskText(taskList[taskListLength - 1], taskList[taskCounter], taskList[taskCounter + 1]);
-  // }
-  // else if(taskCounter == 9){
-  //   updateTaskText(taskList[taskCounter - 1], taskList[taskCounter], taskList[0]);
-  // }
-  // else{
-  //   updateTaskText(taskList[taskCounter - 1], taskList[taskCounter], taskList[taskCounter + 1]);
-  // }
+void upFromTask(taskStructure& aTaskStruct){
+  prevTask(aTaskStruct);
+  updateTaskPageTasks(aTaskStruct);
 }
 
 //    Using DOWN bottom on TASK page
-void downFromTask(taskStructure& s){
-  nextTask(s);
-  updateTaskPageTasks(s);
-  // taskCounter++;
-  // if(taskCounter == 10){
-  //   taskCounter = 0;
-  // }
-  // //    Special Cases
-  // if(taskCounter == 0){
-  //   updateTaskText(taskList[taskListLength - 1], taskList[taskCounter], taskList[taskCounter + 1]);
-  // }
-  // else if(taskCounter == 9){
-  //   updateTaskText(taskList[taskCounter - 1], taskList[taskCounter], taskList[0]);
-  // }
-  // else{
-  //   updateTaskText(taskList[taskCounter - 1], taskList[taskCounter], taskList[taskCounter + 1]);
-  // }
+void downFromTask(taskStructure& aTaskStruct){
+  nextTask(aTaskStruct);
+  updateTaskPageTasks(aTaskStruct);
 }
-
-//    Function to assign tasks when using up or down buttons
-// void updateTaskText(char* top, char* center, char* bottom){
-//   lv_label_set_text(ui_topTask, top);
-//   lv_label_set_text(ui_centerTask, center);
-//   lv_label_set_text(ui_bottomTask, bottom);
-// }
-
 
 //      CUSTOM FUNCTIONS FOR NAVEGATING IN HOME PAGE
 void selectFromHome(){
@@ -441,73 +369,74 @@ void bottomFromContainer(){
   containerVisible = false;
 }
 
-void selectfromContainer(taskStructure& s){
+void selectfromContainer(taskStructure& aTaskStruct){
   lv_event_send(ui_selectButton, LV_EVENT_CLICKED, NULL);
-  updateTasksTextFromHome(DONE, s);
+  updateTasksTextFromHome(DONE, aTaskStruct);
    // update popUp
-  updateTimeInPopUp(s.current);
-  updateTaskInPopUp(s.current);
+  updateTimeInPopUp(aTaskStruct.current);
+  updateTaskInPopUp(aTaskStruct.current);
   containerVisible = false;
 }
 
-void topfromContainer(taskStructure& s){
+
+
+void topfromContainer(taskStructure& aTaskStruct){
   lv_event_send(ui_topButton, LV_EVENT_CLICKED, NULL);
-  updateTasksTextFromHome(SKIP, s);
+  updateTasksTextFromHome(SKIP, aTaskStruct);
    // update popUp
-  updateTimeInPopUp(s.current);
-  updateTaskInPopUp(s.current);
+  updateTimeInPopUp(aTaskStruct.current);
+  updateTaskInPopUp(aTaskStruct.current);
   containerVisible = false;
 }
+
 
 //    Function to assign tasks when using decision buttons
-void updateTasksTextFromHome(action anAction, taskStructure& s) {
+////      CUSTOM FUNCTIONS FOR NAVEGATING IN TASK PAGE
+void selectFromInfo(taskStructure& aTaskStruct){
+  lv_event_send(ui_curseBox, LV_EVENT_CLICKED, NULL);
+  infoVisible = true;
+  lv_label_set_text_fmt(ui_selectedTask1, "%s", aTaskStruct.current->name);
+  lv_label_set_text_fmt(ui_timeOfTask, "%s", aTaskStruct.current->time);
+  lv_label_set_text_fmt(ui_skippedData, "%d", aTaskStruct.current->skippedAmount);
+  lv_label_set_text_fmt(ui_completedData, "%d", aTaskStruct.current->completedAmount);
+}
+void sBackfromContainer(){
+  lv_event_send(ui_closeTaskInfo, LV_EVENT_CLICKED, NULL);
+  infoVisible = false;
+}
 
+void updateTasksTextFromHome(action anAction, taskStructure& aTaskStruct) {
   if (SKIP == anAction) {
-    s.current->skippedAmount++;
-    nextTask(s);
-    updateHomeTasks(s);
-    // taskListTwo[taskCounter2].skippedAmount ++;
-    // taskCounter2++;
-    // if(taskCounter2 == 8) {
-    //     taskCounter2 = 0;
-    // }
-    // lv_label_set_text(ui_currentTaskLable, taskListTwo[taskCounter2].name);
-    // lv_label_set_text(ui_nextTasklabel, taskListTwo[taskCounter2 + 1].name);
+    aTaskStruct.current->skippedAmount++;
+    nextTask(aTaskStruct);
+    updateHomeTasks(aTaskStruct);
   }
   else{
-  //else if (strcmp(action, "DONE") == 0) {
-    s.current->skippedAmount++;
-    nextTask(s);
-    updateHomeTasks(s);
-    // taskListTwo[taskCounter2].completedAmount ++;
-    // taskCounter2++;
-    // if (taskCounter2 == 8) {
-    //     taskCounter2 = 0;
-    // }
-    // lv_label_set_text(ui_currentTaskLable, taskListTwo[taskCounter2].name);
-    // lv_label_set_text(ui_nextTasklabel, taskListTwo[taskCounter2 + 1].name);
+    aTaskStruct.current->completedAmount++;
+    nextTask(aTaskStruct);
+    updateHomeTasks(aTaskStruct);
   }
 }
 
 // GOATED LVGL CREATOR: lv_label_set_text_fmt(label, "Value: %d", 15) for printf formating
 // functions to inilialize tasks
-void updateFocusTasks(taskStructure& s){
+void updateFocusTasks(taskStructure& aTaskStruct){
   Serial.println("Update Focus task");
   // uodate current task
-  lv_label_set_text_fmt(ui_actualTask, "%s %s", s.current->time, s.current->name);
+  lv_label_set_text_fmt(ui_actualTask, "%s %s", aTaskStruct.current->time, aTaskStruct.current->name);
 }
-void updateHomeTasks(taskStructure& s){
+void updateHomeTasks(taskStructure& aTaskStruct){
   Serial.println("Update home task");
   // updated current & next task
-  lv_label_set_text_fmt(ui_currentTaskLable, "%s %s", s.current->time, s.current->name);
-  lv_label_set_text_fmt(ui_nextTasklabel, "%s %s", s.next->time, s.next->name);
+  lv_label_set_text_fmt(ui_currentTaskLable, "%s %s", aTaskStruct.current->time, aTaskStruct.current->name);
+  lv_label_set_text_fmt(ui_nextTasklabel, "%s %s", aTaskStruct.next->time, aTaskStruct.next->name);
 }
-void updateTaskPageTasks(taskStructure& s){
+void updateTaskPageTasks(taskStructure& aTaskStruct){
   Serial.println("Update task page task");
   // update all tasks current, prev, next
-  lv_label_set_text_fmt(ui_centerTask, "%s %s", s.current->time, s.current->name);
-  lv_label_set_text_fmt(ui_bottomTask, "%s %s", s.next->time, s.next->name);
-  lv_label_set_text_fmt(ui_topTask, "%s %s", s.prev->time, s.prev->name);
+  lv_label_set_text_fmt(ui_centerTask, "%s %s", aTaskStruct.current->time, aTaskStruct.current->name);
+  lv_label_set_text_fmt(ui_bottomTask, "%s %s", aTaskStruct.next->time, aTaskStruct.next->name);
+  lv_label_set_text_fmt(ui_topTask, "%s %s", aTaskStruct.prev->time, aTaskStruct.prev->name);
 }
 
 //////// Functions to inilialize taks in POPUP ///////
@@ -519,47 +448,40 @@ void updateTimeInPopUp(task* t){
 }
 
 // initialize the taskStructure so that the current task matches the time.
-void initializeTaskStructure(taskStructure &s){
+void initializeTaskStructure(taskStructure& aTaskStruct){
   Serial.println("Initialoze task struct");
-  while(s.next->time24hr < current24hrTime){
-    nextTask(s);
+  while(aTaskStruct.next->time24hr < current24hrTime){
+    nextTask(aTaskStruct);
   }
-  updateFocusTasks(s);
-  updateHomeTasks(s);
-  updateTaskPageTasks(s);
+  updateFocusTasks(aTaskStruct);
+  updateHomeTasks(aTaskStruct);
+  updateTaskPageTasks(aTaskStruct);
 }
 
 // Iterates the prev,current,and next tasks in a task structure to the next task
-void nextTask(taskStructure& s){
-  s.prev = s.current;
-  s.current = s.next;
-  if(taskListEnd == s.current){
-    s.next = taskListBegin;
+void nextTask(taskStructure& aTaskStruct){
+  aTaskStruct.prev = aTaskStruct.current;
+  aTaskStruct.current = aTaskStruct.next;
+  if(taskListEnd == aTaskStruct.current){
+    aTaskStruct.next = taskListBegin;
   }
   else{
-    s.next ++;//= taskIncrement;
+    aTaskStruct.next ++;//= taskIncrement;
   }
   Serial.println("nextTask Diagnostic:");
-  Serial.println((long)s.prev); Serial.println((long)s.current); Serial.println((long)s.next);
+  Serial.println((long)aTaskStruct.prev); Serial.println((long)aTaskStruct.current); Serial.println((long)aTaskStruct.next);
 }
 
 // Iterates the prev,current,and next tasks in a task structure to the previous task
-void prevTask(taskStructure& s){
-  s.next = s.current;
-  s.current = s.prev;
-  if(taskListBegin == s.current){
-    s.prev = taskListEnd;
+void prevTask(taskStructure& aTaskStruct
+){
+  aTaskStruct.next = aTaskStruct.current;
+  aTaskStruct.current = aTaskStruct.prev;
+  if(taskListBegin == aTaskStruct.current){
+    aTaskStruct.prev = taskListEnd;
   }
   else{
-    s.prev --;// taskIncrement;
+    aTaskStruct.prev --;// taskIncrement;
   }
 }
 
-  //   static lv_img_dsc_t my_racon_dsc = {
-  //     .header.always_zero = 0;
-  //     .header.w
-  //   }
-
-  //   LV_IMG_DECLARE(my_racon_dsc);
-  //   lv_obj_t * icon = lv_img_create(lv_scr_act(),NULL)
-  //   lv_img_set_src(icon, "S:racon.c");
