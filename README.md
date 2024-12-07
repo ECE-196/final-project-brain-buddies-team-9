@@ -1,4 +1,4 @@
-#UCSD
+# UCSD
 # ECE 196 Final Project
 ## Melissa De La Cruz, Gizelle Mendoza, Dustin Miller
 
