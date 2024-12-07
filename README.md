@@ -1,10 +1,6 @@
-# Final Project
+#UCSD
+# ECE 196 Final Project
+## Melissa De La Cruz, Gizelle Mendoza, Dustin Miller
 
-This is where you and your team will place design documents, notes, research, etc.
+Welcome to our final project for ECE 196 at UCSD. Key items are our poster and website.
 
-We want to see your individual contributions and progress over time, so make sure each of
-you contribute substantially. We will look at the commit history to see your contributions.
-
-# Submission
-
-1. All your work!
