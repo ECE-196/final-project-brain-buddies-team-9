@@ -45,10 +45,10 @@
 
 //Uncomment and set up if you want to use custom pins for the SPI communication
 #define REASSIGN_PINS
-int sck = 14;
-int miso = 12;
-int mosi = 13;
-int cs = 15;
+int sck = 37;
+int miso = 36;
+int mosi = 38;
+int cs = 39;
 
 
 void listDir(fs::FS &fs, const char *dirname, uint8_t levels) {
